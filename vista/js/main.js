@@ -14,7 +14,8 @@ let asignaciones ={
 		document.getElementById("alert").style.display = "none";
 
 		dom.getElemento("agregar").addEventListener('click', event => {
-			asignar(dom.getElemento("mesas").value,dom.getElemento("productos").value);
+
+			asignar(dom.getElemento("mesas").value,dom.getElemento("productos").value,dom.getElemento("detalles").value);
 		});
 
 		setItems(doc.querySelector("#productos"),productos);
@@ -33,24 +34,35 @@ let asignaciones ={
 
 	}
 
-	let asignar=(mesa,producto)=>{
-		asignaciones[mesa].push(producto);
+	let asignar=(mesa,producto,detalles)=>{
+		asignaciones[mesa]["productos"].push(producto);
+		asignaciones[mesa]["detalles"]=detalles;
+
+		dom.getElemento("texto").innerText= producto+" agregado correctamente a mesa # "+mesa;
+
+		dom.getElemento("alert").style.display = "block";
+		window.setTimeout(function () {
+			dom.getElemento("alert").style.display = "none";
+		}, 3000);
 
 		console.log(asignaciones);
 
-		dom.getElemento("texto").innerText= producto+" agregado correctamente";
-
-		document.getElementById("alert").style.display = "block";
-		window.setTimeout(function () {
-			document.getElementById("alert").style.display = "none";
-		}, 3000);
 	}
 	
 	let preparacionAsignaciones=(dic,lista)=>{
 		for (const iterator of lista) {
-			dic[iterator] = [];
+			dic[iterator] = {
+				"productos":[],
+				"detalles":""
+			};
 		}
 	}
+
+	let generarInfo=()=>{
+
+	}
+
+	
 
 })(document, window);
 
