@@ -12,10 +12,15 @@ let asignaciones ={
 	
 	doc.addEventListener('DOMContentLoaded',event => {
 		document.getElementById("alert").style.display = "none";
+		dom.getElemento("cantidades").value=1;
 
 		dom.getElemento("agregar").addEventListener('click', event => {
 
-			asignar(dom.getElemento("mesas").value,dom.getElemento("productos").value,dom.getElemento("detalles").value);
+			asignar(dom.getElemento("mesas").value,
+				dom.getElemento("productos").value,
+				dom.getElemento("cantidades").value,
+				dom.getElemento("detalles").value,
+			);
 		});
 
 		setItems(doc.querySelector("#productos"),productos);
@@ -34,8 +39,8 @@ let asignaciones ={
 
 	}
 
-	let asignar=(mesa,producto,detalles)=>{
-		asignaciones[mesa]["productos"].push(producto);
+	let asignar=(mesa,producto,cantidad,detalles)=>{
+		asignaciones[mesa]["productos"].push(producto+" x"+cantidad);
 		asignaciones[mesa]["detalles"]=detalles;
 
 		dom.getElemento("texto").innerText= producto+" agregado correctamente a mesa # "+mesa;
@@ -56,6 +61,13 @@ let asignaciones ={
 				"detalles":""
 			};
 		}
+	}
+
+	const peticion = async (url) => {
+		const response = await fetch(url).then((response)=>{
+			return response.json();
+		});
+		return response;
 	}
 
 	let generarInfo=()=>{
