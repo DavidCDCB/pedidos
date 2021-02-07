@@ -1,0 +1,35 @@
+body{
+	overflow-x: hidden !important;
+	background-image:url("../images/fondo5.png");
+}
+
+#principal{
+	overflow-x: hidden !important;
+}
+
+p{
+	font-weight: bold;
+	font-size:1em;
+	color: white;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	text-align: center;
+	text-shadow: 4px 4px 2px rgba(0, 0, 0, 1);
+}
+label{
+	color: white;
+	font-size: 10;
+}
+
+.modal-body{
+	text-align: center;
+}
+
+.btn{
+	margin-top: 10px ;
+	font-weight: bold ;
+	font-size: 0.7em ;
+}
+div{
+	margin-bottom: 10px;
+}
