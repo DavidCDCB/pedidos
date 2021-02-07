@@ -2,16 +2,299 @@ export default
 
 [
 	{
-		"nombre":"Sándwich",
-		"valor":1000
+		"nombre":"Sánd. pepe loco ETHOS",
+		"valor":10000
 	},
 	{
-		"nombre":"paleta",
+		"nombre":"Sánd. pollo salsa queso",
+		"valor":8000
+	},
+	{
+		"nombre":"Chips de plátano",
+		"valor":4000
+	},
+	{
+		"nombre":"Nachos",
+		"valor":4000
+	},
+	{
+		"nombre":"Club Colombia",
+		"valor":4000
+	},
+	{
+		"nombre":"Pilsen",
+		"valor":4000
+	},
+	{
+		"nombre":"Póker",
+		"valor":4000
+	},
+	{
+		"nombre":"Corona",
+		"valor":7000
+	},
+	{
+		"nombre":"Tres cordilleras",
+		"valor":7000
+	},
+	{
+		"nombre":"Mi. Tradicional",
+		"valor":5000
+	},
+	{
+		"nombre":"Mi. Mango",
+		"valor":6000
+	},
+	{
+		"nombre":"Mi. Brava",
+		"valor":7000
+	},
+	{
+		"nombre":"Mi. Soda",
+		"valor":4000
+	},
+	{
+		"nombre":"Mi. Ethos mango",
+		"valor":4000
+	},
+	{
+		"nombre":"Med. Cristal",
+		"valor":35000
+	},
+	{
+		"nombre":"Med. Antioqueño",
+		"valor":33000
+	},
+	{
+		"nombre":"Med. Ron viejo de Caldas",
+		"valor":40000
+	},
+	{
+		"nombre":"Med. Ron 5 años de Caldas",
+		"valor":45000
+	},
+	{
+		"nombre":"Med. Tequila Jose Cuervo",
+		"valor":60000
+	},
+	{
+		"nombre":"Med. Brandy Domec",
+		"valor":36000
+	},
+	{
+		"nombre":"Med. Buchanas",
+		"valor":100000
+	},
+	{
+		"nombre":"Med. Old Par",
+		"valor":120000
+	},
+	{
+		"nombre":"Bot. Cristal",
+		"valor":60000
+	},
+	{
+		"nombre":"Bot. antioqueño",
+		"valor":58000
+	},
+	{
+		"nombre":"Bot. Ron viejo Caldas",
+		"valor":70000
+	},
+	{
+		"nombre":"Bot. Ron 5 años de Caldas",
+		"valor":80000
+	},
+	{
+		"nombre":"Bot. Tequila Jose Cuervo",
+		"valor":110000
+	},
+	{
+		"nombre":"Bot. Brandy Domec",
+		"valor":65000
+	},
+	{
+		"nombre":"Bot. Buchanas",
+		"valor":180000
+	},
+	{
+		"nombre":"Bot. Old par",
+		"valor":160000
+	},
+	{
+		"nombre":"Tra. Aguardiente",
+		"valor":4000
+	},
+	{
+		"nombre":"Tra. Tequila",
+		"valor":9000
+	},
+	{
+		"nombre":"Tra. Ron",
+		"valor":5000
+	},
+	{
+		"nombre":"Tra. Brandy",
+		"valor":5000
+	},
+	{
+		"nombre":"Tra. Crema cafe Whiskey",
+		"valor":9000
+	},
+	{
+		"nombre":"Tra. Crema natural Whiskey",
+		"valor":9000
+	},
+	{
+		"nombre":"Coc. Mojito",
+		"valor":12000
+	},
+	{
+		"nombre":"Coc. Mojito de F,L,M",
+		"valor":15000
+	},
+	{
+		"nombre":"Coc. Hawái",
+		"valor":14000
+	},
+	{
+		"nombre":"Coc. Caiparinha",
+		"valor":16000
+	},
+	{
+		"nombre":"Coc. Mojito Coco",
+		"valor":15000
+	},
+	{
+		"nombre":"Coc. Pantera rosa",
+		"valor":16000
+	},
+	{
+		"nombre":"Coc. Vodka orange",
+		"valor":12000
+	},
+
+	{
+		"nombre":"Coc. Daiquirí",
+		"valor":12000
+	},
+	{
+		"nombre":"Coc. Maracuyá",
+		"valor":16000
+	},
+	{
+		"nombre":"Coc. Vampiro",
+		"valor":25000
+	},
+	{
+		"nombre":"Coc. Uva ETHOS",
+		"valor":9000
+	},
+	{
+		"nombre":"Coc. Crema (Café)",
+		"valor":9000
+	},
+	{
+		"nombre":"Coc. Crema (Natural)",
+		"valor":9000
+	},
+	{
+		"nombre":"Lim. Coco",
+		"valor":6000
+	},
+	{
+		"nombre":"Lim. Cereza",
+		"valor":6000
+	},
+	{
+		"nombre":"Lim Natural",
+		"valor":4000
+	},
+	{
+		"nombre":"Gran. Café",
+		"valor":8000
+	},
+	{
+		"nombre":"Gran. Frutos rojos",
+		"valor":6000
+	},
+	{
+		"nombre":"Gran. Oreo",
+		"valor":6000
+	},
+	{
+		"nombre":"Gran. Milo",
+		"valor":6000
+	},
+	{
+		"nombre":"Gran. Lulo Maraculla",
+		"valor":7000
+	},
+	{
+		"nombre":"Gran. Ethos",
+		"valor":7000
+	},
+	{
+		"nombre":"Milo Frio",
+		"valor":4000
+	},
+	{
+		"nombre":"Malteada Chocolate",
+		"valor":8000
+	},
+	{
+		"nombre":"Malteada Frutos",
+		"valor":9000
+	},
+	{
+		"nombre":"Malteada Leches",
+		"valor":8000
+	},
+	{
+		"nombre":"Soda ETHOS",
+		"valor":6000
+	},
+	{
+		"nombre":"Soda cereza",
+		"valor":6000
+	},
+	{
+		"nombre":"Soda fresa",
+		"valor":6000
+	},
+	{
+		"nombre":"Café americano",
 		"valor":2000
 	},
 	{
-		"nombre":"gaseosa",
+		"nombre":"Café Expresso",
+		"valor":2000
+	},
+	{
+		"nombre":"Capuccino",
 		"valor":3000
+	},
+	{
+		"nombre":"Capuccino Licor",
+		"valor":6000
+	},
+	{
+		"nombre":"Mokaccino",
+		"valor":4000
+	},
+	{
+		"nombre":"Milo",
+		"valor":4000
+	},
+	
+	{
+		"nombre":"Aromatica Frutos Rojos",
+		"valor":3500
+	},
+	
+	{
+		"nombre":"Aromatica Frutos Amarillos",
+		"valor":3500
 	}
 ]
 
