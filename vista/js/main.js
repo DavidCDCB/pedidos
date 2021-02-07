@@ -1,18 +1,15 @@
 'use strict';
 
 import dom from './dom-pruebas.js';//clase estatica
-let productos = ["1","2"];
+let productos = ["chicle","paleta","gaseosa"];
 let mesas = ["1","2","3","4","5","6","7"];
 
 ((doc, win) => {
 	
 	doc.addEventListener('DOMContentLoaded',event => {
-		let objProducos = doc.querySelector("#productos");
-		setItems(objProducos,productos);
-
+		setItems(doc.querySelector("#productos"),productos);
+		setItems(doc.querySelector("#mesas"),mesas);
 	});
-
-	
 
 	let setItems=(elemento,listado)=>{
 		for (const iterator of listado) {
