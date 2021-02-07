@@ -102,7 +102,7 @@ let asignaciones = [];
 					console.log(productos);
 				}
 				if(mesas["detalles"] != "")
-					info += "¡NOTA! "+mesas["detalles"];
+					info += "¡NOTA!\n  "+mesas["detalles"];
 				info += "\n\n";
 			}
 		}
