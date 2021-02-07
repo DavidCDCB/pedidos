@@ -1,6 +1,8 @@
 'use strict';
 
 import dom from './dom-pruebas.js';//clase estatica
+import data from './datos.js'
+
 let productos = [];
 let mesas = ["1","2","3","4","5","6","7"];
 
@@ -14,7 +16,7 @@ let asignaciones = [];
 
 		peticion("https://raw.githubusercontent.com/DavidCDCB/pedidos/master/productos.json").then(
 			result =>{
-				for (const producto of result) {
+				for (const producto of data) {
 					productos.push(producto["nombre"]+"-"+producto["valor"]);
 				}
 				setItems(doc.querySelector("#productos"),productos);
