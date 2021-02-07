@@ -21,6 +21,10 @@ label{
 	font-size: 10;
 }
 
+option{
+	font-weight: bold;
+}
+
 .modal-body{
 	text-align: center;
 }
@@ -29,5 +33,11 @@ label{
 	margin-top: 10px ;
 	font-weight: bold ;
 	font-size: 0.7em ;
+}
+
+#texto{
+	background-color: aquamarine;
+	border-radius: 3px;
+	padding: 0.5em;
 }
 
