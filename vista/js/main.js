@@ -23,7 +23,6 @@ let asignaciones = [];
 		);
 
 		dom.getElemento("agregar").addEventListener('click', event => {
-
 			asignar(dom.getElemento("mesas").value,
 				dom.getElemento("productos").value,
 				dom.getElemento("cantidades").value,
@@ -31,6 +30,12 @@ let asignaciones = [];
 			);
 		});
 
+		dom.getElemento("copiar").addEventListener('click', event => {
+			var copyText = document.getElementById("info");
+			copyText.select();
+			copyText.setSelectionRange(0, 99999);
+			document.execCommand("copy");
+		});
 		preparacionAsignaciones(asignaciones,mesas);
 		
 	});
@@ -41,19 +46,19 @@ let asignaciones = [];
 			option.text = iterator;
 			elemento.add(option);
 		}
-
 	}
 
 	let asignar=(mesa,producto,cantidad,detalles)=>{
 		let total = 0;
-		asignaciones[mesa-1]["productos"].push(producto.split("-")[0]+" x"+cantidad);
+		asignaciones[mesa-1]["productos"].push(
+			producto.split("-")[0]+" $"+producto.split("-")[1]+" x"+cantidad
+		);
 		asignaciones[mesa-1]["detalles"]=detalles;
 
 		for (let index = 0; index < cantidad; index++) {
 			asignaciones[mesa-1]["total"] += parseInt(producto.split("-")[1]);
 		}
 		
-
 		dom.getElemento("texto").innerText= producto+" agregado correctamente a mesa # "+mesa;
 		dom.getElemento("alert").style.display = "block";
 		window.setTimeout(function () {
@@ -87,7 +92,6 @@ let asignaciones = [];
 		let info = "";
 
 		for (const mesas of asignaciones) {
-
 			if(mesas["productos"].length>0){
 				console.log(mesas["mesa"]);
 				info += "MESA #"+mesas["mesa"]+" TOTAL "+mesas["total"]+":\n";
@@ -99,7 +103,6 @@ let asignaciones = [];
 					info += "¡NOTA! "+mesas["detalles"];
 				info += "\n\n";
 			}
-
 		}
 		
 		console.log(info);
@@ -109,16 +112,3 @@ let asignaciones = [];
 	
 
 })(document, window);
-
-/* fetch('https://cors-anywhere.herokuapp.com/' + 'https://www.ins.gov.co/Noticias/Paginas/Coronavirus.aspx').then(blob => blob.text()).then(ext => {
-	console.log(ext);
-});
- 
-async function funcionAsincrona(){
-	let objHtml;
-	const response = await fetch('https://cors-anywhere.herokuapp.com/' + 'https://www.ins.gov.co/Noticias/Paginas/Coronavirus.aspx');
-	const blob = await response.blob();
-	console.log(blob);
-	objHtml=URL.createObjectURL(blob)
-  }
-funcionAsincrona(); */

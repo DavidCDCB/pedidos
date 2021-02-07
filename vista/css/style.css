@@ -35,6 +35,10 @@ option{
 	font-size: 0.7em ;
 }
 
+#info{
+	font-weight: bold;
+}
+
 #texto{
 	background-color: aquamarine;
 	border-radius: 3px;
