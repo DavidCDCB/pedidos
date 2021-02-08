@@ -96,14 +96,14 @@ let asignaciones = [];
 		for (const mesas of asignaciones) {
 			if(mesas["productos"].length>0){
 				console.log(mesas["mesa"]);
-				info += "MESA #"+mesas["mesa"]+" TOTAL "+mesas["total"]+":\n";
+				info += "MESA #"+mesas["mesa"]+" TOTAL $"+new Intl.NumberFormat().format(parseInt(mesas["total"]))+":\n";
 				for (const producto of mesas["productos"]) {
 					info += "  -> "+producto+"\n";
 					console.log(productos);
 				}
 				if(mesas["detalles"] != "")
-					info += "¡NOTA!\n  "+mesas["detalles"];
-				info += "\n\n";
+					info += "  ¡NOTA!\n  "+mesas["detalles"];
+				info += "\n---------------------------------------------------\n";
 			}
 		}
 		
