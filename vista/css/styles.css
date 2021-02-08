@@ -1,0 +1,64 @@
+body{
+	overflow-x: hidden !important;
+	background-image:url("../images/fondo7.jpg");
+}
+
+#principal{
+	overflow-x: hidden !important;
+}
+
+p{
+	font-weight: bold;
+	font-size:0.8em;
+	color: white;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	text-align: center;
+	text-shadow: 2px 2px 2px rgb(68, 171, 68);
+}
+label{
+	color: white;
+	font-size: 5;
+}
+
+option{
+	font-weight: bold;
+}
+
+.modal-body{
+	text-align: center;
+}
+
+.btn{
+	margin-top: 10px ;
+	font-weight: bold ;
+	font-size: 0.7em ;
+}
+
+#info{
+	font-weight: bold;
+	filter: alpha(opacity=50);
+}
+
+#texto{
+	background-color: aquamarine;
+	border-radius: 3px;
+	padding: 0.5em;
+	font-size: 0.7em;
+}
+
+.btn{
+	background-color: rgb(185, 129, 57) !important;;
+}
+
+.slide-fade-enter-active {
+transition: all .3s ease;
+}
+.slide-fade-leave-active {
+transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+transform: translateX(10px);
+opacity: 0;
+}
