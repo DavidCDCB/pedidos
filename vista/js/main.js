@@ -5,7 +5,6 @@ import data from './datos.js'
 
 let productos = [];
 let mesas = ["1","2","3","4","5","6","7"];
-
 let asignaciones = [];
 
 ((doc, win) => {
@@ -103,7 +102,7 @@ let asignaciones = [];
 				}
 				if(mesas["detalles"] != "")
 					info += "  ¡NOTA!\n  "+mesas["detalles"];
-				info += "\n---------------------------------------------------\n";
+				info += "\n------------------------------------------------\n";
 			}
 		}
 		
