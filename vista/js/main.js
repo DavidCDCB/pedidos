@@ -18,6 +18,7 @@ let mensaje = (elemento) =>{
 var app = new Vue({
 	el: '#app',
 	data: {
+		url:"https://raw.githubusercontent.com/DavidCDCB/pedidos/modoVue/productos.json",
 		seleccionMesas: "1",
 		cantidades: 1,
 		seleccionProducto: "",
@@ -35,7 +36,7 @@ var app = new Vue({
 			for (const producto of datos) {
 				this.productos.push(producto["nombre"]+"-"+producto["valor"]);
 			}*/
-			peticion("https://raw.githubusercontent.com/DavidCDCB/pedidos/master/productos.json").then(
+			peticion(this.url).then(
 				result =>{
 					for (const producto of result) {
 						this.productos.push(producto["nombre"]+"-"+producto["valor"]);
@@ -70,7 +71,7 @@ var app = new Vue({
 				this.detalles
 			);
 			console.log(this.asignaciones);
-			//this.message=true;
+			this.message=true;
 
 			this.texto = this.seleccionProducto+" agregado correctamente a mesa # "+this.seleccionMesas;
 			mensaje(this.message);
@@ -96,7 +97,7 @@ var app = new Vue({
 					console.log(mesas["mesa"]);
 					tInfo += "🍱 MESA #"+mesas["mesa"]+"  \n💵 TOTAL $"+new Intl.NumberFormat().format(parseInt(mesas["total"]))+":\n";
 					for (const producto of mesas["productos"]) {
-						tInfo += "\n  👉 "+producto+"\n";
+						tInfo += "  👉 "+producto+"\n";
 						
 					}
 					if(mesas["detalles"] != "")
@@ -116,6 +117,7 @@ var app = new Vue({
 			console.log(item-1);
 			this.asignaciones[item-1].productos=[];
 			console.log(this.asignaciones);
+			this.generarInfo();
 		}
 		
 	}

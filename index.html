@@ -28,10 +28,16 @@
 				<p id="titulo">Mini-Sistema de Pedidos Bar Ethos <i class="fas fa-glass-cheers"></i></p>
 
 				<div class="container">
+					<div v-if="message==false">
+						<img src="vista/images/logo.png" class="img-fluid" alt="Responsive image">
+					</div>
+				</div>
+
+				<div class="container">
 					<div class="row">
 						<div class="col-6">
 							<label >Mesa #</label>
-							<select @click="message=false" class="form-control" v-model="seleccionMesas" @change="focoCantidad()">
+							<select class="form-control" v-model="seleccionMesas" @change="focoCantidad()">
 								<option v-for="option in mesas" :value="option">
 									{{ option }}
 								</option>
@@ -41,7 +47,7 @@
 						<div class="col-6">
 							<div class="form-group">
 								<label for="cantidades">Cantidad</label>
-								<input ref="rCantidad" @click="message=false; focoCantidad()"  v-model="cantidades" type="number" class="form-control" >
+								<input ref="rCantidad" @click="focoCantidad()"  v-model="cantidades" type="number" class="form-control" >
 							</div>
 						</div>
 
@@ -51,7 +57,7 @@
 					<div class="row justify-content-center">
 						<div class="form-group col-12">
 							<label for="cantidades">Producto</label>
-							<select @click="message=false" class="form-control" v-model="seleccionProducto" @change="focoCantidad()">
+							<select class="form-control" v-model="seleccionProducto" @change="focoCantidad()">
 								<option v-for="option in productos" :value="option">
 									{{ option }}
 								</option>
@@ -69,41 +75,38 @@
 						<button @click="agregar()" type="button" class="btn btn-warnin">Agregar <i class="fas fa-plus-circle"></i></button>
 						<button @click="copiar()" type="button" class="btn btn-warnin">Copiar <i class="fas fa-share-square"></i></button>
 					</div>
-	
-					<transition name="slide-fade">
-						<div @click="message=false" v-if="message" class="texto fadeInLeft slow">
-							
-							<div id="texto">{{texto}}</div>
-						</div>
-					</transition>
 
-					<label for="exampleFormControlTextarea1">Pedidos actuales</label>
+
+	
+					<label v-if="message==true">Pedidos actuales</label>
 					<div class="card">
 
 						<ul class="list-group list-group-flush">
-							<transition name="slide-fade">
-							<li v-if="cajon.productos.length>0"  v-for="(cajon,ind) of asignaciones" class="list-group-item">
-								Mesa #{{cajon.mesa}} Con un total de {{cajon.total}}
+							<transition-group  name="slide-fade">
+							<li v-if="cajon.productos.length>0"  v-for="(cajon,ind) of asignaciones" :key="cajon.mesa" class="list-group-item">
+								<b>Mesa #{{cajon.mesa}}</b> con un total de {{cajon.total}}
 								y {{cajon.productos.length}} productos
-								<button @click="eliminar(cajon.mesa)" id="btn" class= align-self-end>X</button>
+								<button @click="eliminar(cajon.mesa)" id="btn" class= align-self-end>
+									<i class="fas fa-trash-alt"></i>
+								</button>
 							</li>
-							</transition>
+							</transition-group >
 						</ul>
 						
 					</div>
 					
-					<div class="row">
-						<div class="form-group col-12">
-							<label for="exampleFormControlTextarea1">Información de productos</label>
-							<textarea ref="rInfo" :value="info" @click="message=false" class="form-control"  rows="10"></textarea>
+					
+					<transition name="fade">
+						<div v-if="message==true">
+							<div class="row">
+								<div class="form-group col-12">
+									<label for="exampleFormControlTextarea1">Información de productos</label>
+									<textarea ref="rInfo" :value="info"  class="form-control"  rows="10"></textarea>
+								</div>
+							</div>						
 						</div>
-					</div>
-
+					</transition>
 				</div>
-
-
-				
-
 			</div>
 		</div>
 		
