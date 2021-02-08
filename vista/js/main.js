@@ -52,7 +52,7 @@ let asignaciones = [];
 	let asignar=(mesa,producto,cantidad,detalles)=>{
 		let total = 0;
 		asignaciones[mesa-1]["productos"].push(
-			producto.split("-")[0]+" $"+producto.split("-")[1]+" x"+cantidad
+			"x"+cantidad+" "+producto.split("-")[0]+" $"+producto.split("-")[1]
 		);
 		asignaciones[mesa-1]["detalles"]=detalles;
 
@@ -95,13 +95,13 @@ let asignaciones = [];
 		for (const mesas of asignaciones) {
 			if(mesas["productos"].length>0){
 				console.log(mesas["mesa"]);
-				info += "MESA #"+mesas["mesa"]+" TOTAL $"+new Intl.NumberFormat().format(parseInt(mesas["total"]))+":\n";
+				info += "🍱 MESA #"+mesas["mesa"]+"  \n💵 TOTAL $"+new Intl.NumberFormat().format(parseInt(mesas["total"]))+":\n";
 				for (const producto of mesas["productos"]) {
-					info += "  -> "+producto+"\n";
+					info += "\n  👉 "+producto+"\n";
 					console.log(productos);
 				}
 				if(mesas["detalles"] != "")
-					info += "  ¡NOTA!\n  "+mesas["detalles"];
+					info += "\n  ⚠️ ¡NOTA!\n    "+mesas["detalles"];
 				info += "\n------------------------------------------------\n";
 			}
 		}
