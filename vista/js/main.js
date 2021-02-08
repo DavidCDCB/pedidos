@@ -37,6 +37,20 @@ let asignaciones = [];
 			copyText.setSelectionRange(0, 99999);
 			document.execCommand("copy");
 		});
+
+		dom.getElemento("mesas").addEventListener('change', event => {
+			dom.getElemento("cantidades").focus();
+			dom.getElemento("cantidades").select();
+		});
+
+		dom.getElemento("cantidades").addEventListener('focus', event => {
+			dom.getElemento("cantidades").select();
+		});
+
+
+		dom.getElemento("cantidades").addEventListener('change', event => {
+			dom.getElemento("productos").focus();
+		});
 		preparacionAsignaciones(asignaciones,mesas);
 		
 	});
@@ -67,6 +81,7 @@ let asignaciones = [];
 		}, 3000);
 
 		generarInfo();
+		dom.getElemento("cantidades").value=1;
 		console.log(asignaciones);
 
 	}
@@ -80,13 +95,6 @@ let asignaciones = [];
 				"detalles":""
 			});
 		}
-	}
-
-	const peticion = async (url) => {
-		const response = await fetch(url).then((response)=>{
-			return response.json();
-		});
-		return response;
 	}
 
 	let generarInfo=()=>{
@@ -110,6 +118,11 @@ let asignaciones = [];
 		dom.getElemento("info").value=info;
 	}
 
-	
+	const peticion = async (url) => {
+		const response = await fetch(url).then((response)=>{
+			return response.json();
+		});
+		return response;
+	}
 
 })(document, window);
