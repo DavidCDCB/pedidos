@@ -48,7 +48,21 @@ option{
 }
 
 .btn{
-	background-color: rgb(185, 129, 57) !important;;
+	background-color: rgb(185, 129, 57) !important;
+}
+
+.card{
+	background-color: rgb(237, 240, 80) !important;
+	padding: 0px;
+
+}
+
+li.list-group-item{
+	background-color: rgb(237, 240, 80)  !important;
+	color: black;
+	padding: 10px;
+
+	font-size: 0.8em;
 }
 
 .slide-fade-enter-active {
@@ -61,4 +75,12 @@ transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 /* .slide-fade-leave-active below version 2.1.8 */ {
 transform: translateX(10px);
 opacity: 0;
+}
+
+#btn{
+	float: right;
+	background-color: red;
+	border-radius: 0.5em;
+	color: white;
+	border-color: white;
 }

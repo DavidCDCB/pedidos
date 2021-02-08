@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>TDB System</title>
+    <title>Pedidos Bar Ethos</title>
 	
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -76,11 +76,26 @@
 							<div id="texto">{{texto}}</div>
 						</div>
 					</transition>
+
+					<label for="exampleFormControlTextarea1">Pedidos actuales</label>
+					<div class="card">
+
+						<ul class="list-group list-group-flush">
+							<transition name="slide-fade">
+							<li v-if="cajon.productos.length>0"  v-for="(cajon,ind) of asignaciones" class="list-group-item">
+								Mesa #{{cajon.mesa}} Con un total de {{cajon.total}}
+								y {{cajon.productos.length}} productos
+								<button @click="eliminar(cajon.mesa)" id="btn" class= align-self-end>X</button>
+							</li>
+							</transition>
+						</ul>
+						
+					</div>
 					
 					<div class="row">
 						<div class="form-group col-12">
-							<label for="exampleFormControlTextarea1">Pedidos</label>
-							<textarea ref="rInfo" :value="info" @click="message=false" class="form-control"  rows="15"></textarea>
+							<label for="exampleFormControlTextarea1">Información de productos</label>
+							<textarea ref="rInfo" :value="info" @click="message=false" class="form-control"  rows="10"></textarea>
 						</div>
 					</div>
 

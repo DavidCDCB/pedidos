@@ -70,7 +70,7 @@ var app = new Vue({
 				this.detalles
 			);
 			console.log(this.asignaciones);
-			this.message=true;
+			//this.message=true;
 
 			this.texto = this.seleccionProducto+" agregado correctamente a mesa # "+this.seleccionMesas;
 			mensaje(this.message);
@@ -111,6 +111,11 @@ var app = new Vue({
 			this.$refs.rInfo.focus();
 			this.$refs.rInfo.select();
 			document.execCommand("copy");
+		},
+		eliminar(item){
+			console.log(item-1);
+			this.asignaciones[item-1].productos=[];
+			console.log(this.asignaciones);
 		}
 		
 	}
