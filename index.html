@@ -31,7 +31,7 @@
 					<div class="row">
 						<div class="col-6">
 							<label >Mesa #</label>
-							<select @click="message=false" class="form-control" v-model="seleccionMesas" @change="ver(seleccionMesas)">
+							<select @click="message=false" class="form-control" v-model="seleccionMesas" @change="focoCantidad()">
 								<option v-for="option in mesas" :value="option">
 									{{ option }}
 								</option>
@@ -41,7 +41,7 @@
 						<div class="col-6">
 							<div class="form-group">
 								<label for="cantidades">Cantidad</label>
-								<input @click="message=false" v-model="cantidades" type="number" class="form-control" >
+								<input ref="rCantidad" @click="message=false; focoCantidad()"  v-model="cantidades" type="number" class="form-control" >
 							</div>
 						</div>
 
@@ -51,7 +51,7 @@
 					<div class="row justify-content-center">
 						<div class="form-group col-12">
 							<label for="cantidades">Producto</label>
-							<select @click="message=false" class="form-control" v-model="seleccionProducto" @change="ver(seleccionProducto)">
+							<select @click="message=false" class="form-control" v-model="seleccionProducto" @change="focoCantidad()">
 								<option v-for="option in productos" :value="option">
 									{{ option }}
 								</option>
@@ -80,7 +80,7 @@
 					<div class="row">
 						<div class="form-group col-12">
 							<label for="exampleFormControlTextarea1">Pedidos</label>
-							<textarea :value="info" @click="message=false" class="form-control"  rows="15"></textarea>
+							<textarea ref="rInfo" :value="info" @click="message=false" class="form-control"  rows="15"></textarea>
 						</div>
 					</div>
 

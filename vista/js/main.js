@@ -57,8 +57,9 @@ var app = new Vue({
 				});
 			}
 		},
-		ver(seleccion){
-			console.log(seleccion);
+		focoCantidad(){
+			this.$refs.rCantidad.focus();
+			this.$refs.rCantidad.select();
 		},
 		agregar(){
 
@@ -103,10 +104,13 @@ var app = new Vue({
 					tInfo += "\n------------------------------------------------\n";
 				}
 			}
+			this.cantidades = 1;
 			this.info = tInfo;
 		},
 		copiar(){
-
+			this.$refs.rInfo.focus();
+			this.$refs.rInfo.select();
+			document.execCommand("copy");
 		}
 		
 	}
