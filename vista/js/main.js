@@ -14,6 +14,7 @@ var app = new Vue({
 	el: '#app',
 	data: {
 		url:"https://raw.githubusercontent.com/DavidCDCB/pedidos/modoVue/productos.json",
+		phone:"3185153771",
 		seleccionMesas: "1",
 		cantidades: 1,
 		seleccionCategoria: "",
@@ -122,7 +123,7 @@ var app = new Vue({
 			this.$refs.rInfo.focus();
 			this.$refs.rInfo.select();
 			document.execCommand("copy");
-			window.open("https://wa.me/+573185153771/?text="+encodeURIComponent(this.info), '_blank');
+			window.open("https://wa.me/+57"+this.phone+"/?text="+encodeURIComponent(this.info), '_blank');
 		},
 		eliminar(item){
 			console.log(item-1);
