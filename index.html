@@ -27,11 +27,11 @@
 			<div class="row justify-content-center animated fadeInLeft slow">
 				<p id="titulo">Mini-Sistema de Pedidos Bar Ethos <i class="fas fa-glass-cheers"></i></p>
 
-				<div class="container">
-					<div v-if="message==false">
+				<transition name="fade">
+					<div v-if="message==false" class="container">
 						<img src="vista/images/logo.png" class="img-fluid" alt="Responsive image">
 					</div>
-				</div>
+				</transition>
 
 				<div class="container">
 					<div class="row">
@@ -50,39 +50,36 @@
 								<input ref="rCantidad" @click="focoCantidad()"  v-model="cantidades" type="number" class="form-control" >
 							</div>
 						</div>
-
-
 					</div>
 					<div class="row">
-					<div class="col-6">
-						<div class="row justify-content-center">
-							<div class="form-group col-12">
-								<label for="cantidades">Categoría</label>
-								<select @change="enlistarProductos()" class="form-control" v-model="seleccionCategoria">
-									<option v-for="option in categorias" :value="option">
-										{{ option }}
-									</option>
-								</select>
+						<div class="col-6">
+							<div class="row justify-content-center">
+								<div class="form-group col-12">
+									<label for="cantidades">Categoría</label>
+									<select @change="enlistarProductos()" class="form-control" v-model="seleccionCategoria">
+										<option v-for="option in categorias" :value="option">
+											{{ option }}
+										</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="row justify-content-center">
+								<div class="form-group col-12">
+									<label for="cantidades">Producto</label>
+									<select class="form-control" v-model="seleccionProducto">
+										<option v-for="option in productosFiltrados" :value="option">
+											{{ option.split("-")[0] }}
+										</option>
+									</select>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-6">
-						<div class="row justify-content-center">
-							<div class="form-group col-12">
-								<label for="cantidades">Producto</label>
-								<select class="form-control" v-model="seleccionProducto">
-									<option v-for="option in productosFiltrados" :value="option">
-										{{ option.split("-")[0] }}
-									</option>
-								</select>
-							</div>
-						</div>
-
-					</div>
-				</div>
 					<div class="row justify-content-center">
 						<div class="form-group col-12">
-							<input v-model="detalles" type="text" class="form-control" placeholder="Detalles">
+							<input @click="message=true" v-model="detalles" type="text" class="form-control" placeholder="Detalles">
 						</div>
 					</div>
 
@@ -90,26 +87,21 @@
 						<button @click="agregar()" type="button" class="btn btn-warnin">Agregar <i class="fas fa-plus-circle"></i></button>
 						<button @click="copiar()" type="button" class="btn btn-warnin">Copiar <i class="fas fa-share-square"></i></button>
 					</div>
-
-
 	
 					<label v-if="message==true">Pedidos actuales</label>
 					<div class="card">
-
 						<ul class="list-group list-group-flush">
 							<transition-group  name="slide-fade">
-							<li v-if="cajon.productos.length>0"  v-for="(cajon,ind) of asignaciones" :key="cajon.mesa" class="list-group-item">
-								<b>Mesa #{{cajon.mesa}}</b> a pedido {{cajon.productos.length}} productos,
-								con un total de ${{cajon.total}}.
-								<button @click="eliminar(cajon.mesa)" id="btn" class= align-self-end>
-									<i class="fas fa-trash-alt"></i>
-								</button>
-							</li>
+								<li v-if="cajon.productos.length>0"  v-for="(cajon,ind) of asignaciones" :key="cajon.mesa" class="list-group-item">
+									<b>Mesa #{{cajon.mesa}}</b> a pedido {{cajon.productos.length}} productos,
+									con un total de ${{cajon.total}}.
+									<button @click="eliminar(cajon.mesa)" id="btn" class= align-self-end>
+										<i class="fas fa-trash-alt"></i>
+									</button>
+								</li>
 							</transition-group >
 						</ul>
-						
 					</div>
-					
 					
 					<transition name="fade">
 						<div v-if="message==true">

@@ -62,6 +62,7 @@ var app = new Vue({
 		},
 		enlistarProductos(){
 			this.productosFiltrados = [];
+			this.seleccionProducto = "";
 			for (const producto of this.productos) {
 				if(producto.split("-")[2] == this.seleccionCategoria){
 					this.productosFiltrados.push(producto.split("-")[0]+"-"+producto.split("-")[1]);
