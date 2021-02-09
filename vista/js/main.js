@@ -116,6 +116,7 @@ var app = new Vue({
 		eliminar(item){
 			console.log(item-1);
 			this.asignaciones[item-1].productos=[];
+			this.asignaciones[item-1].total=0;
 			console.log(this.asignaciones);
 			this.generarInfo();
 		}

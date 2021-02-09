@@ -65,6 +65,14 @@ li.list-group-item{
 	font-size: 0.8em;
 }
 
+#btn{
+	float: right;
+	background-color: red;
+	border-radius: 0.5em;
+	color: white;
+	border-color: white;
+}
+
 .slide-fade-enter-active {
 transition: all .3s ease;
 }
@@ -83,10 +91,3 @@ opacity: 0;
 	opacity: 0
 }
 
-#btn{
-	float: right;
-	background-color: red;
-	border-radius: 0.5em;
-	color: white;
-	border-color: white;
-}
