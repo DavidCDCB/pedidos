@@ -122,8 +122,7 @@ var app = new Vue({
 			this.$refs.rInfo.focus();
 			this.$refs.rInfo.select();
 			document.execCommand("copy");
-			
-			window.open("https://wa.me/+573185153771/?text=hola", '_blank');
+			window.open("https://wa.me/+573185153771/?text="+encodeURIComponent(this.info), '_blank');
 		},
 		eliminar(item){
 			console.log(item-1);
