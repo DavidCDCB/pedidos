@@ -9,11 +9,6 @@ let peticion = async (url) => {
 	return response;
 }
 
-let mensaje = (elemento) =>{
-	window.setTimeout(function () {
-		elemento=false;
-	}, 3000);
-}
 
 var app = new Vue({
 	el: '#app',
@@ -63,12 +58,9 @@ var app = new Vue({
 		enlistarProductos(){
 			this.productosFiltrados = [];
 			this.seleccionProducto = "";
-			for (const producto of this.productos) {
-				if(producto.split("-")[2] == this.seleccionCategoria){
-					this.productosFiltrados.push(producto.split("-")[0]+"-"+producto.split("-")[1]);
-				}
-				
-			}
+			this.productosFiltrados=this.productos.filter(
+				producto => producto.split("-")[2] == this.seleccionCategoria
+			);
 		},
 		preparacionAsignaciones(dic,lista){
 			for (const iterator of lista) {
@@ -85,7 +77,6 @@ var app = new Vue({
 			this.$refs.rCantidad.select();
 		},
 		agregar(){
-
 			this.asignar(
 				this.seleccionMesas,
 				this.seleccionProducto,
@@ -94,10 +85,7 @@ var app = new Vue({
 			);
 			console.log(this.asignaciones);
 			this.message=true;
-
 			this.texto = this.seleccionProducto+" agregado correctamente a mesa # "+this.seleccionMesas;
-			mensaje(this.message);
-
 			this.generarInfo();
 		},
 		asignar(mesa,producto,cantidad,detalles){
@@ -134,6 +122,8 @@ var app = new Vue({
 			this.$refs.rInfo.focus();
 			this.$refs.rInfo.select();
 			document.execCommand("copy");
+			
+			window.open("https://wa.me/+573185153771/?text=hola", '_blank');
 		},
 		eliminar(item){
 			console.log(item-1);
