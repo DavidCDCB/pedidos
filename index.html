@@ -57,7 +57,7 @@
 					<div class="row justify-content-center">
 						<div class="form-group col-12">
 							<label for="cantidades">Producto</label>
-							<select class="form-control" v-model="seleccionProducto" @change="focoCantidad()">
+							<select class="form-control" v-model="seleccionProducto">
 								<option v-for="option in productos" :value="option">
 									{{ option }}
 								</option>
