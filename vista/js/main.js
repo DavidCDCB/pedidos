@@ -113,7 +113,7 @@ var app = new Vue({
 					}
 					if(mesas["detalles"] != "")
 						tInfo += "\n  ⚠️ ¡NOTA!\n    "+mesas["detalles"];
-					tInfo += "\n------------------------------------------------\n";
+					tInfo += "------------------------------------------------\n";
 				}
 			}
 			this.cantidades = 1;

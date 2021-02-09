@@ -343,33 +343,33 @@
 	{
 		"nombre":"Café Expresso",
 		"valor":2000,
-		"categoria":"Bebidas Caliente"
+		"categoria":"Bebidas Calientes"
 	},
 	{
 		"nombre":"Capuccino",
 		"valor":3000,
-		"categoria":"Bebidas Caliente"
+		"categoria":"Bebidas Calientes"
 	},
 	{
 		"nombre":"Capuccino Licor",
 		"valor":6000,
-		"categoria":"Bebidas Caliente"
+		"categoria":"Bebidas Calientes"
 	},
 	{
 		"nombre":"Mokaccino",
 		"valor":4000,
-		"categoria":"Bebidas Caliente"
+		"categoria":"Bebidas Calientes"
 	},
 	{
 		"nombre":"Milo",
 		"valor":4000,
-		"categoria":"Bebidas Caliente"
+		"categoria":"Bebidas Calientes"
 	},
 	
 	{
 		"nombre":"Aromatica Frutos Rojos",
 		"valor":3500,
-		"categoria":"Bebidas Caliente"
+		"categoria":"Bebidas Calientes"
 	},
 	
 	{
