@@ -51,10 +51,24 @@ option{
 	background-color: rgb(185, 129, 57) !important;
 }
 
-.card{
-	background-color: rgb(237, 240, 80) !important;
+table{
 	padding: 0px;
+	border-color: black;
+	text-align: center;
+	color: white;
+	background-color: rgb(0, 0, 0) !important;
+	opacity: 0.8;
+}
 
+table th{
+	color: white;
+	text-shadow: 2px 2px 2px rgb(68, 171, 68);
+	font-weight: bold;
+}
+
+table td{
+	color: white;
+	font-size: 0.8em ;
 }
 
 li.list-group-item{
@@ -66,11 +80,7 @@ li.list-group-item{
 }
 
 #btn{
-	float: right;
-	background-color: red;
-	border-radius: 0.5em;
 	color: white;
-	border-color: white;
 }
 
 .slide-fade-enter-active {

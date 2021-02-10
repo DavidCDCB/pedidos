@@ -125,6 +125,12 @@ var app = new Vue({
 			let nTotal = Intl.NumberFormat().format(this.asignaciones[ind].total);
 			return "<b>Mesa #"+nMesa+"</b> a pedido "+nCantidad+" productos,con un total de $"+nTotal+"."
 		},
+		mensajePedido2(ind){
+			let nMesa = this.asignaciones[ind].mesa;
+			let nCantidad = this.asignaciones[ind].cantidad;
+			let nTotal = Intl.NumberFormat().format(this.asignaciones[ind].total);
+			return [nMesa,nCantidad,nTotal]
+		},
 		copiar(){
 			this.$refs.rInfo.focus();
 			this.$refs.rInfo.select();
