@@ -51,6 +51,7 @@
 							</div>
 						</div>
 					</div>
+					
 					<div class="row">
 						<div class="col-6">
 							<div class="row justify-content-center">
@@ -92,9 +93,8 @@
 					<div class="card">
 						<ul class="list-group list-group-flush">
 							<transition-group  name="slide-fade">
-								<li v-if="cajon.productos.length>0"  v-for="(cajon,ind) of asignaciones" :key="cajon.mesa" class="list-group-item">
-									<b>Mesa #{{cajon.mesa}}</b> a pedido {{cajon.productos.length}} productos,
-									con un total de ${{cajon.total}}.
+								<li v-for="(cajon,ind) of asignaciones" v-if="cajon.productos.length>0" :key="cajon.mesa" class="list-group-item">
+									<span v-html="mensajePedido(ind)"></span>
 									<button @click="eliminar(cajon.mesa)" id="btn" class= align-self-end>
 										<i class="fas fa-trash-alt"></i>
 									</button>
