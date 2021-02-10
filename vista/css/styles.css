@@ -12,6 +12,7 @@ body{
 	color: white;
 	background-color: black;
 	opacity: 0.8;
+	border-color: cyan;
 }
 
 #principal{
@@ -59,15 +60,15 @@ option{
 }
 
 .btn{
-	background-color: rgb(185, 129, 57) !important;
+	background-color: rgb(185, 129, 57);
 }
 
-table{
+.table-dark{
 	padding: 0px;
 	border-color: black;
 	text-align: center;
 	color: white;
-	background-color: rgb(0, 0, 0) !important;
+	background-color: rgb(0, 0, 0);
 	opacity: 0.8;
 }
 
@@ -94,6 +95,28 @@ li.list-group-item{
 	color: white;
 }
 
+textarea.form-control{
+	background-color: black;
+	color: white;
+	text-shadow: 2px 2px 2px rgba(3, 173, 0, 1);
+	font-weight: bold;
+	border-color: white;
+	opacity: 0.8;
+}
+
+/*EFECTOS DE ANIMACION*/
+
+.list-enter-active, .list-leave-active {
+transition: all 1s;
+}
+.list-enter, .list-leave-to{
+opacity: 0;
+transform: translateX(30px);
+}
+.list-move {
+transition: transform 1s;
+}
+
 .slide-fade-enter-active {
 transition: all .3s ease;
 }
@@ -112,11 +135,3 @@ opacity: 0;
 	opacity: 0
 }
 
-textarea.form-control{
-	background-color: black;
-	color: white;
-	text-shadow: 2px 2px 2px rgba(3, 173, 0, 1);
-	font-weight: bold;
-	border-color: rgb(11, 247, 255);
-	opacity: 0.8;
-}

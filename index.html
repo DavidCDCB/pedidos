@@ -86,32 +86,31 @@
 								class="fab fa-whatsapp"></i></button>
 					</div>
 
-					<label v-if="message==true">Pedidos actuales</label>
+					<label v-if="message==true && info!=''">Pedidos actuales</label>
 
-					<table v-if="message==true" class="table table-striped table-dark justify-content-center ">
-
-						<tr>
-							<th><i class="fas fa-utensils"></i><br>Mesa#</th>
-							<th><i class="fas fa-list-ol"></i><br>Cantidad</th>
-							<th><i class="fas fa-money-bill-wave"></i><br>Valor</th>
-							<th><i class="fas fa-minus-square"></i><br>Eliminar</th>
-						</tr>
-						<tr v-for="(cajon,ind) of asignaciones" v-if="cajon.productos.length>0" :key="cajon.mesa">
-							<td v-html="mensajePedido2(ind)[0]"></td>
-							<td v-html="mensajePedido2(ind)[1]"></td>
-							<td v-html="mensajePedido2(ind)[2]"></td>
-							<td>
-								<div @click="eliminar(cajon.mesa)" id="btn" class=align-self-end>
-									<i class="fas fa-trash-alt"></i>
-								</div>
-							</td>
-						</tr>
-
+					<table v-if="message==true && info!=''" class="table table-striped table-dark justify-content-center ">
+						<tbody name="list" is="transition-group">
+							<tr>
+								<th><i class="fas fa-utensils"></i><br>Mesa#</th>
+								<th><i class="fas fa-list-ol"></i><br>Cantidad</th>
+								<th><i class="fas fa-money-bill-wave"></i><br>Valor</th>
+								<th><i class="fas fa-minus-square"></i><br>Eliminar</th>
+							</tr>
+							<tr v-for="(cajon,ind) of asignaciones" :key="cajon.mesa" v-if="cajon.productos.length>0">
+								<td v-html="mensajePedido2(ind)[0]"></td>
+								<td v-html="mensajePedido2(ind)[1]"></td>
+								<td v-html="mensajePedido2(ind)[2]"></td>
+								<td>
+									<div @click="eliminar(cajon.mesa)" id="btn" class=align-self-end>
+										<i class="fas fa-trash-alt"></i>
+									</div>
+								</td>
+							</tr>
+						</tbody>
 					</table>
 
-
 					<transition name="fade">
-						<div v-if="message==true">
+						<div v-if="message==true && info!=''">
 							<div class="row">
 								<div class="form-group col-12">
 									<label for="exampleFormControlTextarea1">Información de productos</label>

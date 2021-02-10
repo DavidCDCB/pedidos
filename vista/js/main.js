@@ -1,5 +1,7 @@
 //https://es.vuejs.org/v2/guide/index.html
 //https://es.vuejs.org/v2/guide/forms.html
+//https://www.youtube.com/watch?v=xqb02MxZqyM&list=PLkX2mGB_95MmJxV4Agv_m_gBlKhjBxqgx
+//https://www.youtube.com/watch?v=iENgabVQSYY
 //<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script> 
 
 let peticion = async (url) => {
