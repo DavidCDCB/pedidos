@@ -2,18 +2,18 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Pedidos Bar Ethos</title>
-	
+	<title>Pedidos Bar Ethos</title>
+
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 	<!-- Google Fonts -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
 	<!-- Bootstrap core CSS -->
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="/vista/css/bootstrap.min.css" >
 	<!-- Material Design Bootstrap -->
 	<link rel="stylesheet" href="./vista/css/mdb.min.css">
 	<!-- Your custom styles (optional) -->
@@ -22,21 +22,21 @@
 
 <body>
 
-    <div id="app" >
+	<div id="app">
 		<div id="principal" class="container h3-responsive">
 			<div class="row justify-content-center animated fadeInLeft slow">
 				<p id="titulo">Mini-Sistema de Pedidos Bar Ethos <i class="fas fa-glass-cheers"></i></p>
 
 				<transition name="fade">
-					<div v-if="message==false" class="container">
-						<img src="vista/images/logo.png" class="img-fluid" alt="Responsive image">
+					<div v-if="message==false" class="container figure">
+						<img src="vista/images/logo.png" class="img-fluid rounded" alt="Responsive image">
 					</div>
 				</transition>
 
 				<div class="container">
 					<div class="row form-group">
 						<div class="col-6">
-							<label >Mesa #</label>
+							<label>Mesa #</label>
 							<select class="form-control" v-model="seleccionMesas" @change="focoCantidad()">
 								<option v-for="option in mesas" :value="option">
 									{{ option }}
@@ -46,10 +46,11 @@
 
 						<div class="col-6">
 							<label for="cantidades">Cantidad</label>
-							<input ref="rCantidad" @click="focoCantidad()"  v-model="cantidades" type="number" class="form-control" >
+							<input ref="rCantidad" @click="focoCantidad()" v-model="cantidades" type="number"
+								class="form-control">
 						</div>
 					</div>
-					
+
 					<div class="row form-group">
 
 						<div class="col-6">
@@ -73,19 +74,22 @@
 					</div>
 					<div class="row justify-content-center">
 						<div class="form-group col-12">
-							<input @click="message=true" v-model="detalles" type="text" class="form-control" placeholder="Detalles">
+							<input @click="message=true" v-model="detalles" type="text" class="form-control"
+								placeholder="Detalles">
 						</div>
 					</div>
 
 					<div class="row justify-content-center">
-						<button @click="agregar()" type="button" class="btn btn-warnin">Agregar <i class="fas fa-plus-circle"></i></button>
-						<button @click="copiar()" type="button" class="btn btn-warnin">Enviar <i class="fab fa-whatsapp"></i></button>
+						<button @click="agregar()" type="button" class="btn btn-warnin">Agregar <i
+								class="fas fa-plus-circle"></i></button>
+						<button @click="copiar()" type="button" class="btn btn-warnin">Enviar <i
+								class="fab fa-whatsapp"></i></button>
 					</div>
-	
+
 					<label v-if="message==true">Pedidos actuales</label>
-					
+
 					<table v-if="message==true" class="table table-striped table-dark justify-content-center ">
-					
+
 						<tr>
 							<th><i class="fas fa-utensils"></i><br>Mesa#</th>
 							<th><i class="fas fa-list-ol"></i><br>Cantidad</th>
@@ -97,47 +101,50 @@
 							<td v-html="mensajePedido2(ind)[1]"></td>
 							<td v-html="mensajePedido2(ind)[2]"></td>
 							<td>
-								<div @click="eliminar(cajon.mesa)" id="btn" class= align-self-end>
+								<div @click="eliminar(cajon.mesa)" id="btn" class=align-self-end>
 									<i class="fas fa-trash-alt"></i>
 								</div>
 							</td>
 						</tr>
-						
+
 					</table>
-						
+
 
 					<transition name="fade">
 						<div v-if="message==true">
 							<div class="row">
 								<div class="form-group col-12">
 									<label for="exampleFormControlTextarea1">Información de productos</label>
-									<textarea ref="rInfo" :value="info"  class="form-control"  rows="10"></textarea>
+									<textarea ref="rInfo" :value="info" class="form-control" rows="10"></textarea>
 								</div>
-							</div>						
+							</div>
 						</div>
 					</transition>
 				</div>
 			</div>
 		</div>
-    </div>
+	</div>
 
 	<!-- JQuery -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<!-- Bootstrap tooltips -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
 	<!-- Bootstrap core JavaScript -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
 	<!-- MDB core JavaScript -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 	<!-- Alpine JS -->
-	 
+
 	<!-- VUE JS 2-->
 	<script src="./vista/libs/vue.js"></script>
 
 	<!-- Personales -->
 	<script src="./vista/js/main.js"></script>
-	
-		
+
+
 </body>
 
 </html>
