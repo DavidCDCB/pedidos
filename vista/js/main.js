@@ -2,7 +2,11 @@
 //https://es.vuejs.org/v2/guide/forms.html
 //https://www.youtube.com/watch?v=xqb02MxZqyM&list=PLkX2mGB_95MmJxV4Agv_m_gBlKhjBxqgx
 //https://www.youtube.com/watch?v=iENgabVQSYY
+//https://www.youtube.com/watch?v=GAQB7Y4X5fM&list=PLPl81lqbj-4J-gfAERGDCdOQtVgRhSvIT
 //<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.7.3/dist/alpine.min.js" defer></script> 
+
+//Almacenamiento local:
+//https://es.vuejs.org/v2/cookbook/client-side-storage.html
 
 let peticion = async (url) => {
 	const response = await fetch(url).then((response)=>{
@@ -14,8 +18,17 @@ let peticion = async (url) => {
 
 var app = new Vue({
 	el: '#app',
+	mounted(){
+		axios.get('https://raw.githubusercontent.com/DavidCDCB/pedidos/modoVue/productos.json')
+		.then(response => {
+			this.bd=response.data;
+			this.inicio();
+		}).catch(error => {
+			console.log(error);
+		});
+	},
 	data: {
-		url:"https://raw.githubusercontent.com/DavidCDCB/pedidos/modoVue/productos.json",
+		bd: null,
 		phone:"3185153771",
 		seleccionMesas: "1",
 		cantidades: 1,
@@ -28,38 +41,37 @@ var app = new Vue({
 		nMesas: 7,
 		mesas : [],
 		categorias : [
-			"Snack",
-			"Cervezas",
-			"Micheladas",
-			"Media",
-			"Botella",
-			"Trago",
-			"Cocteles",
-			"Bebidas Frias",
-			"Bebidas Calientes"
 		],
 		info: "",
 		message: false,
 		texto: ""
 	},
-	methods:{
-		inicio(){
-			peticion(this.url).then(
-				result =>{
-					for (const producto of result) {
-						this.productos.push(producto["nombre"]+"-"+producto["valor"]+"-"+producto["categoria"]);
-					}
-				}
-			);
-
-			this.preparacionAsignaciones(this.asignaciones,this.nMesas);
-		},
-		enlistarProductos(){
-			this.productosFiltrados = [];
-			this.seleccionProducto = "";
-			this.productosFiltrados=this.productos.filter(
+	computed: {
+		filtrar() {
+			return this.productos.filter(
 				producto => producto.split("-")[2] == this.seleccionCategoria
 			);
+		},
+		buscarElemento(){
+			return this.db.filter(item => item.nombre.includes("Poker"));
+		}
+	},
+	methods:{
+		inicio(){
+			for (const producto of this.bd) {
+				this.productos.push(producto["nombre"]+"-"+producto["valor"]+"-"+producto["categoria"]);
+				this.enlistarCategoria(producto["categoria"]);
+			}
+			this.preparacionAsignaciones(this.asignaciones,this.nMesas);
+		},
+		enlistarCategoria(categoria){
+			if(!this.categorias.includes(categoria) || this.categorias.length==0){
+				this.categorias.push(categoria);
+			}
+		},
+		limpiarFiltrado(){
+			this.productosFiltrados = [];
+			this.seleccionProducto = "";
 		},
 		preparacionAsignaciones(dic,nMesas){
 			for (let index = 1; index <= nMesas; index++) {
@@ -121,12 +133,6 @@ var app = new Vue({
 			this.cantidades = 1;
 			this.info = tInfo;
 		},
-		mensajePedido(ind){
-			let nMesa = this.asignaciones[ind].mesa;
-			let nCantidad = this.asignaciones[ind].cantidad;
-			let nTotal = Intl.NumberFormat().format(this.asignaciones[ind].total);
-			return "<b>Mesa #"+nMesa+"</b> a pedido "+nCantidad+" productos,con un total de $"+nTotal+"."
-		},
 		mensajePedido2(ind){
 			let nMesa = this.asignaciones[ind].mesa;
 			let nCantidad = this.asignaciones[ind].cantidad;
@@ -145,10 +151,10 @@ var app = new Vue({
 			this.asignaciones[item-1].cantidad=0;
 			this.asignaciones[item-1].detalles="";
 			this.generarInfo();
+		},
+		verificarBotones(){
+			return (this.seleccionCategoria=="" || this.seleccionProducto=="");
 		}
 		
 	}
 });
-
-
-app.inicio();
