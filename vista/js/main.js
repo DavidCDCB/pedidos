@@ -40,11 +40,11 @@ var app = new Vue({
 		asignaciones: [],
 		nMesas: 7,
 		mesas : [],
-		categorias : [
-		],
+		categorias : [],
 		info: "",
 		message: false,
-		texto: ""
+		texto: "",
+		tiempo: 0
 	},
 	computed: {
 		filtrar() {
@@ -57,21 +57,43 @@ var app = new Vue({
 		}
 	},
 	methods:{
+		modal(text){
+			var modal = new tingle.modal({
+				footer: true,
+				stickyFooter: true,
+				closeMethods: ['overlay', 'button', 'escape'],
+				closeLabel: "",
+				cssClass: ['custom-class-1', 'custom-class-2'],
+				onOpen: function() {
+					console.log('modal open');
+				},
+				onClose: function() {
+					console.log('modal closed');
+				}
+			});
+
+			modal.setContent(text);
+			modal.open();
+			// close modal
+			//modal.close();		
+		},
 		inicio(){
-			for (const producto of this.bd) {
-				this.productos.push(producto["nombre"]+"-"+producto["valor"]+"-"+producto["categoria"]);
-				this.enlistarCategoria(producto["categoria"]);
+			this.tiempo = 30-new Date().getDate();
+			if(this.tiempo>0){
+				this.modal(`<h2>Versión de prueba por ${this.tiempo} días.</h2>`);
+				for (const producto of this.bd) {
+					this.productos.push(producto["nombre"]+"-"+producto["valor"]+"-"+producto["categoria"]);
+					this.enlistarCategoria(producto["categoria"]);
+				}
+				this.preparacionAsignaciones(this.asignaciones,this.nMesas);
+			}else{
+				this.modal(`<h2>Tiempo de prueba expirado :o</h2>`);
 			}
-			this.preparacionAsignaciones(this.asignaciones,this.nMesas);
 		},
 		enlistarCategoria(categoria){
 			if(!this.categorias.includes(categoria) || this.categorias.length==0){
 				this.categorias.push(categoria);
 			}
-		},
-		limpiarFiltrado(){
-			this.productosFiltrados = [];
-			this.seleccionProducto = "";
 		},
 		preparacionAsignaciones(dic,nMesas){
 			for (let index = 1; index <= nMesas; index++) {
@@ -102,6 +124,7 @@ var app = new Vue({
 			this.message=true;
 			this.texto = this.seleccionProducto+" agregado correctamente a mesa # "+this.seleccionMesas;
 			this.generarInfo();
+			this.seleccionProducto = "";
 		},
 		asignar(mesa,producto,cantidad,detalles){
 			let total = 0;
