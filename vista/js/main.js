@@ -57,9 +57,10 @@ var app = new Vue({
 		}
 	},
 	methods:{
+		//https://tingle.robinparisi.com/
 		modal(text){
 			var modal = new tingle.modal({
-				footer: true,
+				footer: false,
 				stickyFooter: true,
 				closeMethods: ['overlay', 'button', 'escape'],
 				closeLabel: "",
@@ -80,14 +81,25 @@ var app = new Vue({
 		inicio(){
 			this.tiempo = 30-new Date().getDate();
 			if(this.tiempo>0){
-				this.modal(`<h2>Versión de prueba por ${this.tiempo} días.</h2>`);
+				//https://sweetalert.js.org/guides/
+				swal({
+					text: `Versión de prueba por ${this.tiempo} días.`,
+					className: "",
+					icon: "warning",
+					button: "OK",
+				});
 				for (const producto of this.bd) {
 					this.productos.push(producto["nombre"]+"-"+producto["valor"]+"-"+producto["categoria"]);
 					this.enlistarCategoria(producto["categoria"]);
 				}
 				this.preparacionAsignaciones(this.asignaciones,this.nMesas);
 			}else{
-				this.modal(`<h2>Tiempo de prueba expirado :o</h2>`);
+				swal({
+					text: `Tiempo de prueba expirado por favor contactese con el desarrollador.`,
+					icon: "error",
+					button: "OK",
+					dangerMode: true
+				});
 			}
 		},
 		enlistarCategoria(categoria){
