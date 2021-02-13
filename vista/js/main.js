@@ -14,7 +14,72 @@
 
 
 
+//https://firebase.google.com/docs/firestore/manage-data/add-data?hl=es
+//https://www.youtube.com/watch?v=itNsRn1kjLU
+//https://firebase.google.com/docs/database/web/start
+var firebaseConfig = {
+    apiKey: "AIzaSyAvlVJ9p2fBDhhqtJW4RdMmm-RtmRaFxgY",
+    authDomain: "pruebabd-7538a.firebaseapp.com",
+    projectId: "pruebabd-7538a",
+    storageBucket: "pruebabd-7538a.appspot.com",
+    messagingSenderId: "1005652515792",
+    appId: "1:1005652515792:web:5f91ee7ea9062789ad77d5"
+};
+
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
 /*
+
+//Creando Tabla documendo vacio y id por defecto
+//firebase.firestore().collection("usuarios").doc().set({});
+
+async function setData(data = {}) {
+	const db = firebase.firestore();
+	const response = await db.collection('usuarios').add(data);
+	return response;
+}
+
+async function getData() {
+	const db = firebase.firestore();
+	const querySnapshot = await db.collection('usuarios').get();
+	querySnapshot.forEach(element => {
+		console.log(element.id,element.data());
+	});
+}
+
+
+setData({
+	nombre:'david',
+	apellido:'cruz'
+}).then(data => {
+	console.log(data); // JSON data parsed by `data.json()` call
+});
+
+getData();
+*/
+
+/*
+var database = firebase.database();
+
+//https://firebase.google.com/docs/database/rest/save-data#section-update
+const options = {
+	headers: {
+		'Content-Type': 'application/json'
+	}
+};
+
+axios.put('https://pruebabd-7538a-default-rtdb.firebaseio.com/bd.json',
+	[{
+		'firstName': 'David',
+		'lastName': 'Cruz'
+  	}],
+	options
+).then(response => {
+	console.log(response);
+});
+
 
 const options = {
 	headers: {
@@ -118,8 +183,9 @@ var app = new Vue({
 			//modal.close();		
 		},
 		inicio(){
-			this.tiempo = new Date().getDate();
-			if(this.tiempo < 0){
+			this.tiempo = 28-new Date().getDate();
+			if(this.tiempo >= 0){
+				
 				//https://sweetalert.js.org/guides/
 				swal({
 					text: `Versión de prueba por ${this.tiempo} días.`,
