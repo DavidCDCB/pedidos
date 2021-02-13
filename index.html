@@ -16,7 +16,7 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Material Design Bootstrap -->
 	<link rel="stylesheet" href="./vista/css/mdb.min.css">
-	<link rel="stylesheet" href="./vista/css/tingle.min.css">
+
 	<!-- Your custom styles (optional) -->
 	<link rel="stylesheet" href="./vista/css/styles.css">
 </head>
@@ -68,7 +68,7 @@
 							<label for="cantidades">Producto</label>
 							<select class="form-control" v-model="seleccionProducto">
 								<option v-for="option in filtrar" :value="option">
-									{{ option.split("-")[0] }}
+									{{ option.split("-")[0] }} ${{option.split("-")[1]}}
 								</option>
 							</select>
 						</div>
@@ -145,7 +145,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<!-- VUE JS 2-->
 	<script src="./vista/libs/vue.js"></script>
-	<script src="./vista/libs/tingle.min.js"></script>
+
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<!-- Personales -->
 	<script src="./vista/js/main.js"></script>

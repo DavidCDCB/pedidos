@@ -8,13 +8,52 @@
 //Almacenamiento local:
 //https://es.vuejs.org/v2/cookbook/client-side-storage.html
 
-let peticion = async (url) => {
-	const response = await fetch(url).then((response)=>{
-		return response.json();
-	});
-	return response;
-}
+//Json alojado
+//https://jsonbin.io/
+//https://www.npoint.io/docs/aaed1f27f53781275f31
 
+
+
+/*
+
+const options = {
+	headers: {
+		'X-Master-Key': '$2b$10$LhCbDpA5gOD3zUpsiCMNLOqpMALprhx4suc18LQUwiYgxYQPmJcgS',
+		'Content-Type': 'application/json'
+	}
+};
+
+axios.post('https://api.jsonbin.io/v3/b',
+	{
+		'firstName': 'Fred',
+		'lastName': 'Flintstone'
+  	},
+	options
+).then(response => {
+	console.log(response);
+});
+
+
+
+ // Ejemplo implementando el metodo POST:
+async function postData(url = '', data = {}) {
+	const response = await fetch(url, {
+		method: 'POST', // *GET, POST, PUT, DELETE, etc.
+		headers: 	{
+		'X-Master-Key': '$2b$10$LhCbDpA5gOD3zUpsiCMNLOqpMALprhx4suc18LQUwiYgxYQPmJcgS',
+		'Content-Type': 'application/json'
+	},
+	body: JSON.stringify(data) // body data type must match "Content-Type" header
+	});
+	return response.json(); // parses JSON response into native JavaScript objects
+}
+  
+postData('https://api.jsonbin.io/v3/b', {
+	'firstName': 'Fred',
+	'lastName': 'Flintstone'
+}).then(data => {
+	console.log(data); // JSON data parsed by `data.json()` call
+}); */
 
 var app = new Vue({
 	el: '#app',
@@ -79,8 +118,8 @@ var app = new Vue({
 			//modal.close();		
 		},
 		inicio(){
-			this.tiempo = 30-new Date().getDate();
-			if(this.tiempo>0){
+			this.tiempo = new Date().getDate();
+			if(this.tiempo < 0){
 				//https://sweetalert.js.org/guides/
 				swal({
 					text: `Versión de prueba por ${this.tiempo} días.`,
@@ -95,7 +134,7 @@ var app = new Vue({
 				this.preparacionAsignaciones(this.asignaciones,this.nMesas);
 			}else{
 				swal({
-					text: `Tiempo de prueba expirado por favor contactese con el desarrollador.`,
+					text: `Tiempo de prueba expirado. Por favor contactese con el desarrollador para obtener la versión ilimitada.`,
 					icon: "error",
 					button: "OK",
 					dangerMode: true
