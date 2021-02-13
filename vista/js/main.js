@@ -17,6 +17,7 @@
 //https://firebase.google.com/docs/firestore/manage-data/add-data?hl=es
 //https://www.youtube.com/watch?v=itNsRn1kjLU
 //https://firebase.google.com/docs/database/web/start
+/*
 var firebaseConfig = {
     apiKey: "AIzaSyAvlVJ9p2fBDhhqtJW4RdMmm-RtmRaFxgY",
     authDomain: "pruebabd-7538a.firebaseapp.com",
@@ -29,8 +30,6 @@ var firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
-/*
 
 //Creando Tabla documendo vacio y id por defecto
 //firebase.firestore().collection("usuarios").doc().set({});
@@ -58,26 +57,35 @@ setData({
 });
 
 getData();
-*/
 
-/*
-var database = firebase.database();
+
+
 
 //https://firebase.google.com/docs/database/rest/save-data#section-update
-const options = {
-	headers: {
-		'Content-Type': 'application/json'
-	}
-};
+const data = [{
+	'firstName': 'David',
+	'lastName': 'Cruz'
+},
+{
+	'firstName': 'dsds',
+	'lastName': 'dsds'
+}
+];
 
-axios.put('https://pruebabd-7538a-default-rtdb.firebaseio.com/bd.json',
-	[{
-		'firstName': 'David',
-		'lastName': 'Cruz'
-  	}],
-	options
+axios.put('https://pruebabd-7538a-default-rtdb.firebaseio.com/usuarios.json',
+	data,{
+	headers:{
+		'Content-Type': 'application/json'
+	}}
 ).then(response => {
 	console.log(response);
+});
+
+axios.get('https://pruebabd-7538a-default-rtdb.firebaseio.com/usuarios.json?print=pretty')
+.then(response => {
+	console.log(response.data);
+}).catch(error => {
+	console.log(error);
 });
 
 
@@ -130,6 +138,7 @@ var app = new Vue({
 		}).catch(error => {
 			console.log(error);
 		});
+		this.uploadData([]);
 	},
 	data: {
 		bd: null,
@@ -148,7 +157,8 @@ var app = new Vue({
 		info: "",
 		message: false,
 		texto: "",
-		tiempo: 0
+		tiempo: 0,
+		upData: []
 	},
 	computed: {
 		filtrar() {
@@ -181,6 +191,16 @@ var app = new Vue({
 			modal.open();
 			// close modal
 			//modal.close();		
+		},
+		uploadData(data){
+			axios.put('https://pruebabd-7538a-default-rtdb.firebaseio.com/pedidos.json',
+			data,{
+			headers:{
+				'Content-Type': 'application/json'
+			}}
+			).then(response => {
+				console.log(response);
+			});
 		},
 		inicio(){
 			this.tiempo = 28-new Date().getDate();
@@ -254,6 +274,8 @@ var app = new Vue({
 			for (let index = 0; index < cantidad; index++) {
 				this.asignaciones[mesa-1].total += parseInt(producto.split("-")[1]);
 			}
+
+			this.uploadData(this.asignaciones);
 		},
 		generarInfo(){
 			let tInfo = "";
@@ -291,6 +313,7 @@ var app = new Vue({
 			this.asignaciones[item-1].cantidad=0;
 			this.asignaciones[item-1].detalles="";
 			this.generarInfo();
+			this.uploadData(this.asignaciones);
 		},
 		verificarBotones(){
 			return (this.seleccionCategoria=="" || this.seleccionProducto=="");
