@@ -138,7 +138,19 @@ var app = new Vue({
 		}).catch(error => {
 			console.log(error);
 		});
-		this.uploadData([]);
+
+		axios.get('https://pruebabd-7538a-default-rtdb.firebaseio.com/pedidos.json')
+		.then(response => {
+			console.log(response.data);
+			for (const iterator of response.data) {
+				this.upData.push(iterator);
+			}
+			
+		}).catch(error => {
+			console.log(error);
+		});
+
+		//this.uploadData([]);
 	},
 	data: {
 		bd: null,
@@ -274,6 +286,8 @@ var app = new Vue({
 			for (let index = 0; index < cantidad; index++) {
 				this.asignaciones[mesa-1].total += parseInt(producto.split("-")[1]);
 			}
+
+
 			this.upData.push(this.asignaciones[mesa-1]);
 			this.uploadData(this.upData);
 		},
