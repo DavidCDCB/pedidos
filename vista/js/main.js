@@ -274,8 +274,8 @@ var app = new Vue({
 			for (let index = 0; index < cantidad; index++) {
 				this.asignaciones[mesa-1].total += parseInt(producto.split("-")[1]);
 			}
-
-			this.uploadData(this.asignaciones);
+			this.upData.push(this.asignaciones[mesa-1]);
+			this.uploadData(this.upData);
 		},
 		generarInfo(){
 			let tInfo = "";
@@ -313,7 +313,7 @@ var app = new Vue({
 			this.asignaciones[item-1].cantidad=0;
 			this.asignaciones[item-1].detalles="";
 			this.generarInfo();
-			this.uploadData(this.asignaciones);
+			//this.uploadData(this.asignaciones);
 		},
 		verificarBotones(){
 			return (this.seleccionCategoria=="" || this.seleccionProducto=="");
