@@ -79,7 +79,7 @@ var app = new Vue({
 		starCountRef.on('value', (snapshot) => {
 			const data = snapshot.val();
 			if(data != null){
-				new Audio("./sound.ogg").play();
+				this.notification();
 				this.upData = this.upData.concat(this.checkE(data));
 			}
 			this.generarInfo();
@@ -128,6 +128,15 @@ var app = new Vue({
 				found = false;
 			}
 			return newE;
+		},
+		notification(){
+			swal({
+				text: `¡Nuevo pedido!`,
+				icon: "info",
+				button: "OK",
+				dangerMode: false
+			});
+			new Audio("./sound.ogg").play();
 		},
 		uploadData(data){
 			axios.put('https://pruebabd-7538a-default-rtdb.firebaseio.com/pedidos.json',

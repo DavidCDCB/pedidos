@@ -228,6 +228,7 @@ var app = new Vue({
 					className: "",
 					icon: "warning",
 					button: "OK",
+					dangerMode: true
 				});
 				for (const producto of this.bd) {
 					this.productos.push(producto["nombre"]+"-"+producto["valor"]+"-"+producto["categoria"]);
