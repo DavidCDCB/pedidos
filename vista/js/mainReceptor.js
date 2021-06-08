@@ -72,6 +72,9 @@ setData({
 getData();
 */
 
+
+
+
 var app = new Vue({
 	el: '#app2',
 	mounted(){
@@ -79,6 +82,7 @@ var app = new Vue({
 		starCountRef.on('value', (snapshot) => {
 			const data = snapshot.val();
 			if(data != null){
+				new Audio("./sound.ogg").play();
 				this.upData = this.upData.concat(this.checkE(data));
 			}
 			this.generarInfo();
