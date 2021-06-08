@@ -131,8 +131,7 @@ postData('https://api.jsonbin.io/v3/b', {
 var app = new Vue({
 	el: '#app',
 	mounted(){
-
-		axios.get('https://raw.githubusercontent.com/DavidCDCB/pedidos/modoVue/productos.json')
+		axios.get(this.linkDb)
 		.then(response => {
 			this.bd=response.data;
 			this.inicio();
@@ -155,6 +154,8 @@ var app = new Vue({
 		//this.uploadData([]);
 	},
 	data: {
+		//'https://pruebabd-7538a-default-rtdb.firebaseio.com/bdProductos.json'
+		linkDb: "https://raw.githubusercontent.com/DavidCDCB/pedidos/modoVue/productos.json",
 		bd: null,
 		phone:"3185153771",
 		seleccionMesas: "1",
@@ -223,7 +224,7 @@ var app = new Vue({
 				console.log(new Date().getDate());
 				//https://sweetalert.js.org/guides/
 				swal({
-					text: `Versión de prueba`,
+					text: `Versión de prueba gratuita`,
 					className: "",
 					icon: "warning",
 					button: "OK",

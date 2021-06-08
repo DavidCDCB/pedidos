@@ -23,27 +23,27 @@
 
 <body>
 
-	<div id="app">
+	<div id="app2">
 		<div id="principal" class="container h3-responsive">
 			<div class="row justify-content-center animated fadeInLeft slow">
 				<p id="titulo">Sistema de Pedidos Bar Ethos <i class="fas fa-glass-cheers"></i></p>
-
 				<div class="container">
-				<div class="row">
-					<div class="form-group col-12">
-						<label for="exampleFormControlTextarea1">Pedidos Activos</label>
-						<textarea ref="rInfo" :value="info" class="form-control" rows="15"></textarea>
-						<button @click="eliminar()" class="align-self-end btn btn-warnin">
+					<div class="row">
+						<div class="form-group col-12">
+							<label for="exampleFormControlTextarea1">Vericando pedidos activos...</label>
+							<textarea ref="rInfo" :value="info" class="form-control" rows="20"></textarea>
+						</div>
+					</div>
+					<div class="row justify-content-end">
+						<button @click="eliminar()" class="btn btn-warnin">
 							Entregados <i class="fas fa-trash-alt"></i>
 						</button>
 					</div>
 				</div>
 			</div>
-
-			</div>
 		</div>
 	</div>
-	</div>
+
 
 	<!-- JQuery -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
