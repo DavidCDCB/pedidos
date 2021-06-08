@@ -27,7 +27,7 @@
 		<div id="principal" class="container h3-responsive">
 			<div class="row justify-content-center animated fadeInLeft slow">
 				<p id="titulo">Sistema de Pedidos Bar Ethos <i class="fas fa-glass-cheers"></i></p>
-				<div class="container">
+				<div v-if="init" class="container">
 					<div class="row">
 						<div class="form-group col-12">
 							<label for="exampleFormControlTextarea1">Vericando pedidos activos...</label>
@@ -38,8 +38,14 @@
 						<button @click="eliminar()" class="btn btn-warnin">
 							Entregados <i class="fas fa-trash-alt"></i>
 						</button>
+
 					</div>
 				</div>
+			</div>
+			<div class="row justify-content-center">
+				<button v-if="!init" @click="init=true;" class="btn btn-warnin">
+					Iniciar
+				</button>
 			</div>
 		</div>
 	</div>
