@@ -82,6 +82,7 @@ var app = new Vue({
 		starCountRef.on('value', (snapshot) => {
 			const data = snapshot.val();
 			if(data != null){
+				this.$refs.rInfo.focus();
 				new Audio("./sound.ogg").play();
 				this.upData = this.upData.concat(this.checkE(data));
 			}
