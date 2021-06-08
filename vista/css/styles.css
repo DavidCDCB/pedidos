@@ -63,6 +63,13 @@ option{
 	background-color: rgb(185, 129, 57);
 }
 
+
+.contenido{
+	height: 20em;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
 .table-dark{
 	padding: 0px;
 	border-color: black;
@@ -93,7 +100,11 @@ li.list-group-item{
 
 #btn{
 	color: white;
+	margin-left: 0.5em;
+	margin-right: 0.5em;
 }
+
+
 
 textarea.form-control{
 	background-color: black;

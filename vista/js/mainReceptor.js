@@ -17,7 +17,7 @@
 //https://firebase.google.com/docs/firestore/manage-data/add-data?hl=es
 //https://www.youtube.com/watch?v=itNsRn1kjLU
 //https://firebase.google.com/docs/database/web/start
-/*
+
 var firebaseConfig = {
     apiKey: "AIzaSyAvlVJ9p2fBDhhqtJW4RdMmm-RtmRaFxgY",
     authDomain: "pruebabd-7538a.firebaseapp.com",
@@ -30,6 +30,21 @@ var firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+/*
+var database = firebase.database();
+
+firebase.database().ref('pedidos').set({
+    'username': 'wewe',
+    'email': 'wdssd'
+});
+
+var starCountRef = firebase.database().ref('pedidos');
+starCountRef.on('value', (snapshot) => {
+	const data = snapshot.val();
+	console.log(data);
+});
+
+
 
 //Creando Tabla documendo vacio y id por defecto
 //firebase.firestore().collection("usuarios").doc().set({});
@@ -131,28 +146,16 @@ postData('https://api.jsonbin.io/v3/b', {
 var app = new Vue({
 	el: '#app',
 	mounted(){
-
-		axios.get('https://raw.githubusercontent.com/DavidCDCB/pedidos/modoVue/productos.json')
-		.then(response => {
-			this.bd=response.data;
-			this.inicio();
-		}).catch(error => {
-			console.log(error);
-		});
-
-		/*
-		axios.get('https://pruebabd-7538a-default-rtdb.firebaseio.com/pedidos.json')
-		.then(response => {
-			console.log(response.data);
-			for (const iterator of response.data) {
-				this.upData.push(iterator);
+		var starCountRef = firebase.database().ref('pedidos');
+		starCountRef.on('value', (snapshot) => {
+			const data = snapshot.val();
+			if(data != null){
+				console.log(data);
+				this.check(data);
+				console.log(this.upData);
 			}
-			
-		}).catch(error => {
-			console.log(error);
-		});*/
-
-		//this.uploadData([]);
+			this.generarInfo();
+		});
 	},
 	data: {
 		bd: null,
@@ -169,7 +172,6 @@ var app = new Vue({
 		mesas : [],
 		categorias : [],
 		info: "",
-		send: false,
 		message: false,
 		texto: "",
 		tiempo: 0,
@@ -186,6 +188,25 @@ var app = new Vue({
 		}
 	},
 	methods:{
+
+		check(data){
+			let mesas = [];
+			for(d of this.upData){
+				mesas.push(d.mesa);
+			}
+			if(data != null){
+				if(this.upData.length > 0){
+					for(d of data){
+						this.upData.push(d);
+					}
+				}else{
+					this.upData = data;
+				}
+			}else{
+				this.upData = [];
+			}
+
+		},
 		//https://tingle.robinparisi.com/
 		modal(text){
 			var modal = new tingle.modal({
@@ -218,12 +239,13 @@ var app = new Vue({
 			});
 		},
 		inicio(){
-			//this.tiempo = 28-new Date().getDate();
-			if(this.tiempo == 0){
-				console.log(new Date().getDate());
+			this.tiempo = 28-new Date().getDate();
+			
+			if(this.tiempo >= 0){
+				
 				//https://sweetalert.js.org/guides/
 				swal({
-					text: `Versión de prueba`,
+					text: `Versión de prueba por ${this.tiempo} días.`,
 					className: "",
 					icon: "warning",
 					button: "OK",
@@ -272,7 +294,7 @@ var app = new Vue({
 				this.cantidades,
 				this.detalles
 			);
-			console.log(this.asignaciones);
+			//console.log(this.asignaciones);
 			this.message=true;
 			this.texto = this.seleccionProducto+" agregado correctamente a mesa # "+this.seleccionMesas;
 			this.generarInfo();
@@ -289,30 +311,33 @@ var app = new Vue({
 			for (let index = 0; index < cantidad; index++) {
 				this.asignaciones[mesa-1].total += parseInt(producto.split("-")[1]);
 			}
-			if(this.upData.includes(this.asignaciones[mesa-1]) == false || this.upData.length == 0){
-				this.upData.push(this.asignaciones[mesa-1]);
-			}
-			
-			console.log(this.upData);
+
+			//this.uploadData(this.asignaciones);
+			firebase.database().ref('pedidos').set(this.asignaciones);
 		},
 		generarInfo(){
 			let tInfo = "";
-	
-			for (const mesas of this.asignaciones) {
-				if(mesas["productos"].length>0){
-					console.log(mesas["mesa"]);
-					tInfo += "🍱 MESA #"+mesas["mesa"]+"  \n💵 TOTAL $"+new Intl.NumberFormat().format(parseInt(mesas["total"]))+":\n";
-					for (const producto of mesas["productos"]) {
-						tInfo += "  👉 "+producto+"\n";
+			let mesas;
+			if(this.upData != null){
+				for (const i in this.upData) {
+					mesas = this.upData[i];
+					if(mesas["productos"] != undefined){
+						if(mesas["productos"].length>0 ){
+							
+							tInfo += "🍱 MESA #"+mesas["mesa"]+"  \n💵 TOTAL $"+new Intl.NumberFormat().format(parseInt(mesas["total"]))+":\n";
+							for (const producto of mesas["productos"]) {
+								tInfo += "  👉 "+producto+"\n";
+							}
+							if(mesas["detalles"] != "")
+								tInfo += "  ⚠️ ¡NOTA!\n    "+mesas["detalles"];
+							tInfo += "\n------------------------------------------------\n";
+						
+						}
 					}
-					if(mesas["detalles"] != "")
-						tInfo += "  ⚠️ ¡NOTA!\n    "+mesas["detalles"];
-					tInfo += "\n------------------------------------------------\n";
 				}
 			}
 			this.cantidades = 1;
 			this.info = tInfo;
-			this.send = false;
 		},
 		mensajePedido2(ind){
 			let nMesa = this.asignaciones[ind].mesa;
@@ -326,31 +351,13 @@ var app = new Vue({
 			document.execCommand("copy");
 			window.open("https://wa.me/+57"+this.phone+"/?text="+encodeURIComponent(this.info), '_blank');
 		},
-		subirDatos(){
-			console.log(this.upData);
-			this.uploadData(this.upData);
-			this.send = true;
-			swal({
-				text: `¡Pedidos subidos a la nube correctamente!`,
-				className: "",
-				icon: "success",
-				button: "OK",
-			});
-		},
-		eliminar(item){
-			this.asignaciones[item-1].productos=[];
-			this.asignaciones[item-1].total=0;
-			this.asignaciones[item-1].cantidad=0;
-			this.asignaciones[item-1].detalles="";
+		eliminar(){
+			this.upData = [];
 			this.generarInfo();
-			//this.uploadData(this.asignaciones);
+			this.uploadData(this.upData);
 		},
 		verificarBotones(){
 			return (this.seleccionCategoria=="" || this.seleccionProducto=="");
-		},
-
-		redireccionar(){
-			window.location.href="./receptor.html";
 		}
 		
 	}

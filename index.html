@@ -26,11 +26,13 @@
 	<div id="app">
 		<div id="principal" class="container h3-responsive">
 			<div class="row justify-content-center animated fadeInLeft slow">
-				<p id="titulo">Mini-Sistema de Pedidos Bar Ethos <i class="fas fa-glass-cheers"></i></p>
+				<p id="titulo">Sistema de Pedidos Bar Ethos <i class="fas fa-glass-cheers"></i></p>
 
 				<transition name="fade">
 					<div v-if="message==false" class="container figure">
+						<div class="row justify-content-center">
 						<img src="vista/images/logo.png" class="img-fluid rounded" alt="Responsive image">
+						</div>
 					</div>
 				</transition>
 
@@ -85,10 +87,14 @@
 						<button @click="agregar()" type="button" :class="{'disabled':verificarBotones()}" 
 							class="btn btn-warnin">Agregar 
 							<i class="fas fa-plus-circle"></i></button>
+						<button @click="subirDatos()" type="button" :class="{'disabled':send || info==''}" 
+							class="btn btn-warnin">Informar Pedidos 
+							<i class="fas fa-cloud-upload-alt"></i></button>
 						<button @click="copiar()" type="button" :class="{'disabled':info==''}" 
-							class="btn btn-warnin">Enviar 
+							class="btn btn-warnin">Enviar a Wtp 
 							<i class="fab fa-whatsapp"></i></button>
 					</div>
+					
 
 					<label v-if="message==true && info!=''">Pedidos actuales</label>
 
@@ -125,6 +131,11 @@
 						</div>
 					</transition>
 
+					<div class="row justify-content-center">
+						<button @click='redireccionar()' type="button" :class="{'disabled':info==''}" 
+							class="btn btn-warnin">Pedidos Activos 
+							<i class="fas fa-user-clock"></i></button>
+					</div>
 				</div>
 			</div>
 		</div>

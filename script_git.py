@@ -7,6 +7,8 @@ import sys
 import re
 import time
 
+
+
 TITLE = '''
   ______                       __             __            ______   __    __     
  /      \                     |  \           |  \          /      \ |  \  |  \    
@@ -21,16 +23,18 @@ TITLE = '''
                                   | ##                                            
                                    \##                                                       
 '''
-MENU = '''[0] Establecer usuario
-[1] Crear etiqueta
-[2] Crear cambio
-[3] Comparar ramas
-[4] Fusionar rama
-[5] Ver historial y estado
-[6] Subir rama local
-[7] Ir a rama especifica
-[8] Crear rama
-[9] Ir a cambio especifico'''
+MENU = '''[ 0] Establecer usuario
+[ 1] Crear etiqueta
+[ 2] Crear cambio
+[ 3] Comparar ramas
+[ 4] Fusionar rama
+[ 5] Ver historial y estado
+[ 6] Subir rama local
+[ 7] Ir a rama especifica
+[ 8] Crear rama
+[ 9] Ir a cambio especifico
+[10] Complementar ultimo cambio local
+[11] Eliminar ultimo cambio remoto'''
 
 # Diccionario usado para obtener los caracteres de cambio de color
 BCOLORS = {
@@ -250,6 +254,7 @@ def acciones(opt):
 		limpiar()
 		exc("git fetch")
 		exc("git branch -v")
+		print("-> ¡Recuerde hacer pull y solucionar los posibles conflictos antes de subir los cambios!")
 		rama = obtener_entrada("Rama a subir > ")
 		exc("git push origin "+rama)
 		obtener_entrada()
@@ -283,11 +288,17 @@ def acciones(opt):
 			obtener_entrada()
 		exc("git log -3 --graph --decorate --all --abbrev-commit")
 
-	#Para corregir cagazo en un commit acabado de crear :D
 	if(opt == "10"):
 		exc("git add .")
 		exc("git commit --amend")
 		obtener_entrada()
+		
+	if(opt == "11"):
+		exc("git branch -v")
+		rama = obtener_entrada("Nombre de Rama > ")
+		exc("git push -f origin HEAD^:"+rama)
+		exc("git log -3 --graph --decorate --all --abbrev-commit")
+		
 
 
 if __name__ == "__main__":
