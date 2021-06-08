@@ -72,9 +72,6 @@ setData({
 getData();
 */
 
-
-
-
 var app = new Vue({
 	el: '#app2',
 	mounted(){
