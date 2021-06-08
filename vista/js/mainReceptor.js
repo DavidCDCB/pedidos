@@ -150,9 +150,7 @@ var app = new Vue({
 		starCountRef.on('value', (snapshot) => {
 			const data = snapshot.val();
 			if(data != null){
-				console.log(data);
-				this.check(data);
-				console.log(this.upData);
+				this.upData = this.upData.concat(this.checkE(data));
 			}
 			this.generarInfo();
 		});
@@ -188,25 +186,31 @@ var app = new Vue({
 		}
 	},
 	methods:{
-
-		check(data){
-			let mesas = [];
-			for(d of this.upData){
-				mesas.push(d.mesa);
-			}
-			if(data != null){
-				if(this.upData.length > 0){
-					for(d of data){
-						this.upData.push(d);
-					}
-				}else{
-					this.upData = data;
-				}
-			}else{
-				this.upData = [];
-			}
-
+		getString(element){
+			return element.mesa+element.productos.toString();
 		},
+
+		checkE(data){
+			let newE = [];
+			let found = false;
+			for(d of data){
+				for(du of this.upData){
+					console.log(this.getString(d),this.getString(du));
+					if(this.getString(d) == this.getString(du)){
+						console.log("---");
+						found = true;
+						break;
+					}
+				}
+				if(found == false){
+					newE.push(d);
+					console.log(newE);
+				}
+				found = false;
+			}
+			return newE;
+		},
+
 		//https://tingle.robinparisi.com/
 		modal(text){
 			var modal = new tingle.modal({
