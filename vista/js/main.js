@@ -188,20 +188,23 @@ var app = new Vue({
 		}
 	},
 	methods:{
-		getInfoClient(){	
-				
-			let data = {
-				"Fecha Hora":new Date().toString(),
-				"Versión del navegador (appVersion)":navigator.appVersion,
-				"CodeName del navegador (appCodeName)":navigator.appCodeName,
-				"Nombre del navegador (appName)":navigator.appName,
-				"Motor del navegador (product)":navigator.product,
-				"Plataforma del navegador (platform)":navigator.platform,
-				"OnLine (onLine)":navigator.onLine,
-				"Idioma del navegador (language)":navigator.language,
-				"UserAgent (userAgent)":navigator.userAgent
-			}
+		async getInfoClient(){	
+			let ubicacion = "";
 
+			await axios.get('https://ipapi.co/json').then(r => {
+				ubicacion += r.data.country_name+"/";
+				ubicacion += r.data.region+"/";
+				ubicacion += r.data.city+"/";
+				ubicacion += r.data.ip;
+				console.log(ubicacion);
+			});
+
+			let data = {
+				"Ubicacion": ubicacion,
+				"Fecha Hora":new Date().toString(),
+				"Sistema Operativo":navigator.platform,
+				"Detalles UserAgent":navigator.userAgent
+			}
 			axios.post('https://pruebabd-7538a-default-rtdb.firebaseio.com/access.json',
 			data,{
 			headers:{
