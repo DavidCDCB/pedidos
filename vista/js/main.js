@@ -131,6 +131,7 @@ postData('https://api.jsonbin.io/v3/b', {
 var app = new Vue({
 	el: '#app',
 	mounted(){
+		this.getInfoClient();
 		axios.get(this.linkDb)
 		.then(response => {
 			this.bd=response.data;
@@ -187,6 +188,29 @@ var app = new Vue({
 		}
 	},
 	methods:{
+		getInfoClient(){	
+				
+			let data = {
+				"Fecha Hora":new Date().toString(),
+				"Versión del navegador (appVersion)":navigator.appVersion,
+				"CodeName del navegador (appCodeName)":navigator.appCodeName,
+				"Nombre del navegador (appName)":navigator.appName,
+				"Motor del navegador (product)":navigator.product,
+				"Plataforma del navegador (platform)":navigator.platform,
+				"OnLine (onLine)":navigator.onLine,
+				"Idioma del navegador (language)":navigator.language,
+				"UserAgent (userAgent)":navigator.userAgent
+			}
+
+			axios.post('https://pruebabd-7538a-default-rtdb.firebaseio.com/access.json',
+			data,{
+			headers:{
+				'Content-Type': 'application/json'
+			}}
+			).then(response => {
+				console.log(response);
+			});
+		},
 		//https://tingle.robinparisi.com/
 		modal(text){
 			var modal = new tingle.modal({
