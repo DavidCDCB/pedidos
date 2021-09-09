@@ -83,17 +83,28 @@
 						</div>
 					</div>
 
+					
 					<div class="row justify-content-center">
 						<button @click="agregar()" type="button" :class="{'disabled':verificarBotones()}" 
-							class="btn btn-warnin">Agregar 
-							<i class="fas fa-plus-circle"></i></button>
-						<button @click="subirDatos()" type="button" :class="{'disabled':send || info==''}" 
-							class="btn btn-warnin">Informar Pedidos 
-							<i class="fas fa-cloud-upload-alt"></i></button>
-						<button @click="copiar()" type="button" :class="{'disabled':info==''}" 
-							class="btn btn-warnin">Enviar a Wtp 
-							<i class="fab fa-whatsapp"></i></button>
+							class="btn btn-warnin col-10">Agregar 
+							<i class="fas fa-plus-circle"></i>
+						</button>
 					</div>
+					
+					<div class="row justify-content-center">
+						<button @click="subirDatos()" type="button" :class="{'disabled':send || info==''}" 
+							class="btn btn-warnin col-10">Informar Pedidos 
+							<i class="fas fa-cloud-upload-alt"></i>
+						</button>
+					</div>
+					
+					<div class="row justify-content-center">
+						<button @click="copiar()" type="button" :class="{'disabled':info==''}" 
+							class="btn btn-warnin col-10">Enviar a Wtp 
+							<i class="fab fa-whatsapp"></i>
+						</button>
+					</div>
+				
 					
 
 					<label v-if="message==true && info!=''">Pedidos actuales</label>

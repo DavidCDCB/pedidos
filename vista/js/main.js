@@ -131,7 +131,7 @@ postData('https://api.jsonbin.io/v3/b', {
 var app = new Vue({
 	el: '#app',
 	mounted(){
-		this.getInfoClient();
+		this.getNumber();
 		axios.get(this.linkDb)
 		.then(response => {
 			this.bd=response.data;
@@ -156,7 +156,7 @@ var app = new Vue({
 	},
 	data: {
 		//'https://pruebabd-7538a-default-rtdb.firebaseio.com/bdProductos.json'
-		linkDb: "https://raw.githubusercontent.com/DavidCDCB/pedidos/modoVue/productos.json",
+		linkDb: "https://pruebabd-7538a-default-rtdb.firebaseio.com/productos.json",
 		bd: null,
 		phone:"3185153771",
 		seleccionMesas: "1",
@@ -188,9 +188,14 @@ var app = new Vue({
 		}
 	},
 	methods:{
-		async getInfoClient(){	
+		async getNumber(){
+			await axios.get('https://pruebabd-7538a-default-rtdb.firebaseio.com/encargado.json').then(r => {
+				this.phone = r.data.numero;
+			});
+		},
+		async getInfoClient(){
+			// https://ipapi.co/api/?javascript#introduction	
 			let ubicacion = "";
-
 			await axios.get('https://ipapi.co/json').then(r => {
 				ubicacion += r.data.country_name+"/";
 				ubicacion += r.data.region+"/";

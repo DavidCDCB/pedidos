@@ -16,44 +16,79 @@ firebase.initializeApp(firebaseConfig);
 var app = new Vue({
 	el: '#app',
 	mounted(){
-		var starCountRef = firebase.database().ref('productos');
-		starCountRef.on('value', (snapshot) => {
-			if(snapshot.val()!=null){
-				this.datos = snapshot.val();
-			}
-			
-		});
+		this.getPass();
+
 	},
 	data: {
 		datos: [],
 		datosVisibles: [],
 		busqueda: "",
 		nombre: "",
-		precio: 0,
+		valor: "",
+		categoria: "",
+		phone: "",
 		id:0,
 		oldId:0,
-		actualizando:false
+		actualizando:false,
+		session: false,
+		pass:"",
+		UpPass:""
 	},
 	methods:{
+		checkPass(){
+			if(this.pass == this.UpPass){
+				var starCountRef = firebase.database().ref('productos');
+				starCountRef.on('value', (snapshot) => {
+					if(snapshot.val()!=null){
+						this.datos = snapshot.val();
+					}
+					this.session = true;
+				});
+			}
+		},
+		async getPass(){
+			await axios.get('https://pruebabd-7538a-default-rtdb.firebaseio.com/encargado.json').then(r => {
+				this.UpPass = r.data.password;
+			});
+		},
 		guerdarRegistro(){
 			if(!this.actualizando){
-				this.prepararId();
+				if(this.datos.length > 0){
+					this.prepararId();
+				}
 				let nuevo = {
 					'Id': this.id,
-					'Nombre':this.nombre,
-					'Precio':this.precio
+					'nombre':this.nombre,
+					'valor':this.valor,
+					'categoria':this.categoria.toLowerCase(),
 				};
 				this.datos.push(nuevo);
 				this.id++;
 			}else{
-				this.buscarPorId(this.oldId).Nombre = this.nombre;
-				this.buscarPorId(this.oldId).Precio = this.precio;
+				this.buscarPorId(this.oldId).nombre = this.nombre;
+				this.buscarPorId(this.oldId).valor = this.valor;
+				this.buscarPorId(this.oldId).categoria = this.categoria;
 				this.actualizando=false;
 			}
 			
 			this.subirRegistros();
 			this.limpiarCampos();
 			console.log(this.id);
+		},
+		setNumber(){
+			this.phone = prompt("Ingrese número de la persona encargada de preparar pedidos");
+			if(this.phone!=null){
+				axios.put('https://pruebabd-7538a-default-rtdb.firebaseio.com/encargado.json',
+				{
+					"numero": this.phone
+				},{
+				headers:{
+					'Content-Type': 'application/json'
+				}}
+				).then(response => {
+					console.log(response);
+				});
+			}
 		},
 		prepararId(){
 			let ordenados = this.datos.sort((a,b) =>{
@@ -66,7 +101,8 @@ var app = new Vue({
 		},
 		limpiarCampos(){
 			this.nombre = "";
-			this.precio = 0;
+			this.valor = "";
+			this.categoria = "";
 			this.$refs.rNombre.focus();
 		},
 		subirRegistros(){
@@ -81,8 +117,9 @@ var app = new Vue({
 			this.subirRegistros();
 		},
 		actualizar(id){
-			this.nombre = this.datos.filter(item => item.Id == id)[0].Nombre;
-			this.precio = this.datos.filter(item => item.Id == id)[0].Precio;
+			this.nombre = this.datos.filter(item => item.Id == id)[0].nombre;
+			this.valor = this.datos.filter(item => item.Id == id)[0].valor;
+			this.categoria = this.datos.filter(item => item.Id == id)[0].categoria;
 			this.oldId = this.datos.filter(item => item.Id == id)[0].Id;
 			this.actualizando=true;
 		},

@@ -44,7 +44,7 @@ option{
 .btn{
 	margin-top: 10px ;
 	font-weight: bold ;
-	font-size: 0.7em ;
+	font-size: 0.8em ;
 }
 
 #info{
@@ -65,7 +65,7 @@ option{
 
 
 .contenido{
-	height: 20em;
+	height: 18em;
 	overflow-y: auto;
 	overflow-x: hidden;
 }
@@ -105,7 +105,6 @@ li.list-group-item{
 }
 
 
-
 textarea.form-control{
 	background-color: black;
 	color: white;
@@ -113,6 +112,12 @@ textarea.form-control{
 	font-weight: bold;
 	border-color: white;
 	opacity: 0.8;
+}
+
+
+#imgL{
+	height:10em;
+	width:10em;
 }
 
 /*EFECTOS DE ANIMACION*/
