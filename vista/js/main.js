@@ -302,6 +302,7 @@ var app = new Vue({
 		agregar(){
 			this.asignar(
 				this.seleccionMesas,
+				this.seleccionCategoria,
 				this.seleccionProducto,
 				this.cantidades,
 				this.detalles
@@ -312,10 +313,10 @@ var app = new Vue({
 			this.generarInfo();
 			this.seleccionProducto = "";
 		},
-		asignar(mesa,producto,cantidad,detalles){
+		asignar(mesa,categoria,producto,cantidad,detalles){
 			let total = 0;
 			this.asignaciones[mesa-1].productos.push(
-				"x"+cantidad+" "+producto.split("-")[0]+" $"+producto.split("-")[1]
+				"📝x"+cantidad+" de "+categoria+"\n  👉"+producto.split("-")[0]+" $"+producto.split("-")[1]
 			);
 			this.asignaciones[mesa-1].detalles = detalles;
 			this.asignaciones[mesa-1].cantidad += parseInt(cantidad);
@@ -335,13 +336,13 @@ var app = new Vue({
 			for (const mesas of this.asignaciones) {
 				if(mesas["productos"].length>0){
 					console.log(mesas["mesa"]);
-					tInfo += "🍱 MESA #"+mesas["mesa"]+"  \n💵 TOTAL $"+new Intl.NumberFormat().format(parseInt(mesas["total"]))+":\n";
+					tInfo += "🍷 MESA #"+mesas["mesa"]+"  \n💵 TOTAL $"+new Intl.NumberFormat().format(parseInt(mesas["total"]))+":\n";
 					for (const producto of mesas["productos"]) {
-						tInfo += "  👉 "+producto+"\n";
+						tInfo += "\n"+producto+"\n";
 					}
 					if(mesas["detalles"] != "")
-						tInfo += "  ⚠️ ¡NOTA!\n    "+mesas["detalles"];
-					tInfo += "\n------------------------------------------------\n";
+						tInfo += "⚠️ ¡NOTA!\n "+mesas["detalles"]+"\n";
+					tInfo += "------------------------------------------------\n";
 				}
 			}
 			this.cantidades = 1;
