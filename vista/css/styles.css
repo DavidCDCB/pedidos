@@ -1,0 +1,153 @@
+body{
+	overflow-x: hidden !important;
+	background-image:url("../images/fondo7.jpg");
+}
+.form-control{
+	color: white;
+	background-color: black;
+	opacity: 0.8;
+}
+
+.form-control:focus{
+	color: white;
+	background-color: black;
+	opacity: 0.8;
+	border-color: cyan;
+}
+
+#principal{
+	overflow-x: hidden !important;
+}
+
+p{
+	font-weight: bold;
+	font-size:0.8em;
+	color: white;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	text-align: center;
+	text-shadow: 2px 2px 2px rgb(68, 171, 68);
+}
+label{
+	color: white;
+	font-size: 5;
+}
+
+option{
+	font-weight: bold;
+}
+
+.modal-body{
+	text-align: center;
+}
+
+.btn{
+	margin-top: 10px ;
+	font-weight: bold ;
+	font-size: 0.8em ;
+}
+
+#info{
+	font-weight: bold;
+	filter: alpha(opacity=50);
+}
+
+#texto{
+	background-color: aquamarine;
+	border-radius: 3px;
+	padding: 0.5em;
+	font-size: 0.7em;
+}
+
+.btn{
+	background-color: rgb(185, 129, 57);
+}
+
+
+.contenido{
+	height: 18em;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.table-dark{
+	padding: 0px;
+	border-color: black;
+	text-align: center;
+	color: white;
+	background-color: rgb(0, 0, 0);
+	opacity: 0.8;
+}
+
+table th{
+	color: white;
+	text-shadow: 2px 2px 2px rgb(68, 171, 68);
+	font-weight: bold;
+}
+
+table td{
+	color: white;
+	font-size: 0.8em ;
+}
+
+li.list-group-item{
+	background-color: rgb(237, 240, 80)  !important;
+	color: black;
+	padding: 10px;
+
+	font-size: 0.8em;
+}
+
+#btn{
+	color: white;
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+}
+
+
+textarea.form-control{
+	background-color: black;
+	color: white;
+	text-shadow: 2px 2px 2px rgba(3, 173, 0, 1);
+	font-weight: bold;
+	border-color: white;
+	opacity: 0.8;
+}
+
+
+#imgL{
+	height:10em;
+	width:10em;
+}
+
+/*EFECTOS DE ANIMACION*/
+
+.list-enter-active, .list-leave-active {
+transition: all 1s;
+}
+.list-enter, .list-leave-to{
+opacity: 0;
+transform: translateX(30px);
+}
+.list-move {
+transition: transform 1s;
+}
+
+.slide-fade-enter-active {
+transition: all .3s ease;
+}
+.slide-fade-leave-active {
+transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+transform: translateX(10px);
+opacity: 0;
+}
+.fade-enter-active, .fade-leave-active {
+	transition: opacity .5s
+  }
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+	opacity: 0
+}
+
