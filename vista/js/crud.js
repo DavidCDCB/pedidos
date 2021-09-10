@@ -47,7 +47,7 @@ var app = new Vue({
 			}
 		},
 		async getPass(){
-			await axios.get('https://pruebabd-7538a-default-rtdb.firebaseio.com/encargado.json').then(r => {
+			await axios.get('https://pruebabd-7538a-default-rtdb.firebaseio.com/key.json').then(r => {
 				this.UpPass = r.data.password;
 			});
 		},
@@ -131,7 +131,20 @@ var app = new Vue({
 			});
 		},
 		redireccionar(){
-			window.location.href="../receptor.html";
+			//window.location.href="../receptor.html";
+			this.nMesas = prompt("Ingrese la cantidad actual de mesas");
+			if(this.nMesas!=null){
+				axios.put('https://pruebabd-7538a-default-rtdb.firebaseio.com/mesas.json',
+				{
+					"cantidadMesas": parseInt(this.nMesas)
+				},{
+				headers:{
+					'Content-Type': 'application/json'
+				}}
+				).then(response => {
+					console.log(response);
+				});
+			}
 		}
 		
 	}

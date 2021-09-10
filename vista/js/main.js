@@ -132,6 +132,7 @@ var app = new Vue({
 	el: '#app',
 	mounted(){
 		this.getNumber();
+		this.getMesas();
 		axios.get(this.linkDb)
 		.then(response => {
 			this.bd=response.data;
@@ -170,7 +171,7 @@ var app = new Vue({
 		mesasAtendidas: [],
 		adicionales: [],
 		adicion: false,
-		nMesas: 7,
+		nMesas: 0,
 		mesas : [],
 		categorias : [],
 		info: "",
@@ -194,6 +195,11 @@ var app = new Vue({
 		async getNumber(){
 			await axios.get('https://pruebabd-7538a-default-rtdb.firebaseio.com/encargado.json').then(r => {
 				this.phone = r.data.numero;
+			});
+		},
+		async getMesas(){
+			await axios.get('https://pruebabd-7538a-default-rtdb.firebaseio.com/mesas.json').then(r => {
+				this.nMesas = r.data.cantidadMesas;
 			});
 		},
 		async getInfoClient(){
@@ -327,7 +333,7 @@ var app = new Vue({
 			if(this.adicion){
 				this.adicion = false;
 				this.adicionales[mesa-1]++;
-				add = "➕Adicional #"+this.adicionales[mesa-1]+":\n";
+				add = "➕Adicionales #"+this.adicionales[mesa-1]+":\n";
 			}
 
 			this.asignaciones[mesa-1].productos.push(
