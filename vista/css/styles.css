@@ -120,6 +120,10 @@ textarea.form-control{
 	width:10em;
 }
 
+.marcado{
+	color:rgb(0, 172, 240) !important;
+}
+
 /*EFECTOS DE ANIMACION*/
 
 .list-enter-active, .list-leave-active {

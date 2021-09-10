@@ -77,6 +77,7 @@
 
 					</div>
 					<div class="row justify-content-center">
+						<label :class="{'marcado':adicion}">Marcar Adicionales <input type="checkbox" v-model="adicion" ></label><br>
 						<div class="form-group col-12">
 							<input @click="message=true" v-model="detalles" type="text" class="form-control"
 								placeholder="Detalles">
@@ -98,13 +99,13 @@
 						</button>
 					</div>
 
-					<div class="row justify-content-center">
+<!-- 					<div class="row justify-content-center">
 						<button @click="subirDatos()" type="button" :class="{'disabled':send || info==''}" 
 							class="btn btn-warnin col-10">Subir Pedidos 
 							<i class="fas fa-cloud-upload-alt"></i>
 						</button>
 					</div>
-
+ -->
 					<label v-if="message==true && info!=''">Pedidos actuales</label>
 
 					<table v-if="message==true && info!=''" 
@@ -121,7 +122,7 @@
 								<td v-html="mensajePedido2(ind)[1]"></td>
 								<td v-html="mensajePedido2(ind)[2]"></td>
 								<td>
-									<div @click="eliminar(cajon.mesa)" id="btn" class=align-self-end>
+									<div @dblclick="eliminar(cajon.mesa)" id="btn" class=align-self-end>
 										<i class="fas fa-trash-alt"></i>
 									</div>
 								</td>

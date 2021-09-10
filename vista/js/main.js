@@ -167,6 +167,9 @@ var app = new Vue({
 		productos: [],
 		productosFiltrados: [],
 		asignaciones: [],
+		mesasAtendidas: [],
+		adicionales: [],
+		adicion: false,
 		nMesas: 7,
 		mesas : [],
 		categorias : [],
@@ -284,6 +287,7 @@ var app = new Vue({
 		preparacionAsignaciones(dic,nMesas){
 			for (let index = 1; index <= nMesas; index++) {
 				this.mesas.push(index.toString());
+				this.adicionales.push(0);
 			}
 			for (const iterator of this.mesas) {
 				dic.push({
@@ -315,10 +319,20 @@ var app = new Vue({
 		},
 		asignar(mesa,categoria,producto,cantidad,detalles){
 			let total = 0;
+			let add = "";
+
+			if(detalles.length != 0){
+				this.asignaciones[mesa-1].detalles = detalles;
+			} 
+			if(this.adicion){
+				this.adicion = false;
+				this.adicionales[mesa-1]++;
+				add = "➕Adicional #"+this.adicionales[mesa-1]+":\n";
+			}
+
 			this.asignaciones[mesa-1].productos.push(
-				"📝x"+cantidad+" de "+categoria+"\n  👉🏻"+producto.split("-")[0]+" $"+producto.split("-")[1]
+				add+"📝x"+cantidad+" de "+categoria+"\n  👉🏻"+producto.split("-")[0]+" $"+producto.split("-")[1]
 			);
-			this.asignaciones[mesa-1].detalles = detalles;
 			this.asignaciones[mesa-1].cantidad += parseInt(cantidad);
 
 			for (let index = 0; index < cantidad; index++) {
@@ -377,6 +391,7 @@ var app = new Vue({
 			this.asignaciones[item-1].total=0;
 			this.asignaciones[item-1].cantidad=0;
 			this.asignaciones[item-1].detalles="";
+			this.adicionales[item-1] = 0;
 			this.generarInfo();
 			//this.uploadData(this.asignaciones);
 		},
