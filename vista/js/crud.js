@@ -129,6 +129,9 @@ var app = new Vue({
 				if (a[criterio] < b[criterio]) return -1;
 				return 0;
 			});
+		},
+		redireccionar(){
+			window.location.href="../receptor.html";
 		}
 		
 	}

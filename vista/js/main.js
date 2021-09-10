@@ -341,7 +341,7 @@ var app = new Vue({
 						tInfo += "\n"+producto+"\n";
 					}
 					if(mesas["detalles"] != "")
-						tInfo += "⚠️ ¡NOTA!\n "+mesas["detalles"]+"\n";
+						tInfo += "\n⚠️ ¡NOTA!\n "+mesas["detalles"]+"\n";
 					tInfo += "------------------------------------------------\n";
 				}
 			}
@@ -383,10 +383,6 @@ var app = new Vue({
 		verificarBotones(){
 			return (this.seleccionCategoria=="" || this.seleccionProducto=="");
 		},
-
-		redireccionar(){
-			window.location.href="./receptor.html";
-		}
 		
 	}
 });
